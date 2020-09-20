@@ -1,6 +1,7 @@
 <html>
     <head>
         <head>
+            <script src="main.js"></script>
             <title>
                 ¡Rompe Palabras! Log In
             </title>
@@ -15,10 +16,10 @@
         </head>
         <body>
             <div id="logueo">
-                <form action="LogIn.php" method="POST">
-                    <input type="text" name="nombre" placeholder="Ingrese usuario">
-                    <input type="password" name="passwor" placeholder="Inserte contraseña">
-                    <input type="submit">
+                <form>
+                    <input type="text" name="usuario" placeholder="Ingrese usuario" id="usuario">
+                    <input type="password" name="passwor" placeholder="Inserte contraseña" id="passwor">
+                    <input type="submit" onclick="validar()">
                 </form>
             </div>
         </body>
