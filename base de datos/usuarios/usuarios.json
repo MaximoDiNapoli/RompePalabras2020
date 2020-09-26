@@ -1,0 +1,47 @@
+[  
+    {
+
+        "_id": {
+            "$oid": "5f6fc998457631175e6efca5"
+        },
+        "id": {
+            "$numberInt": "1"
+        },
+        "friends": [{
+            "$numberInt": "2"
+        }, {
+            "$numberInt": "3"
+        }],
+        "username": "valkyrion2",
+        "password": "pelele321",
+        "email": "maximodinapolimail@gmail.com"
+    },
+    {
+        "_id": {
+            "$oid": "5f6fca77457631175e6efca6"
+        },
+        "id": {
+            "$numberInt": "2"
+        },
+        "friends": ["1"],
+        "username": "agathos",
+        "password": "pelele123",
+        "email": "eliaselpelele@gmail.com"
+    },
+    {
+        "_id": {
+            "$oid": "5f6fcb3f457631175e6efca7"
+        },
+        "id": {
+            "$numberInt": "3"
+        },
+        "friends": [{
+            "$numberInt": "1"
+        }],
+        "username": "Lautaro no te pregunto",
+        "password": "pelele321",
+        "email": "lautaroeldeas@gmail.com"
+    }
+
+
+]
