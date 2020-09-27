@@ -1,0 +1,98 @@
+body{
+    background-image:url('Fondo2.jpg');
+    background-size: 100%
+}
+#Pestañas{
+    background-color: rgb(45, 32, 226);
+    height: 50px;
+    position: sticky;
+    top: 0;
+}
+#Pestañas ul{
+    float: middle;
+}
+#Pestañas ul a{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive; 
+    display: inline-block;
+    padding: 10px;
+    margin-left: 140px;
+    text-decoration: none;
+}
+#Pestañas ul a:hover{
+    background-color: rgb(21, 6, 243);
+}
+#Como{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    margin: auto;
+    width: 50%;
+    margin-top: 2%;
+    margin-left: 35%
+}
+#CJ1{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: left;
+    width: 45%;
+    margin-left: 8%;
+    margin-top: 3%;
+    font-size: 200%;
+}
+#Add1{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 400%;
+    margin-top: 3%;
+    float: right;
+    margin-right: 7%;
+}
+#CJ2{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: right;
+    width: 40%;
+    margin-right: 3%;
+    margin-top: 10%;
+    font-size: 200%;
+}
+#Add2{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: top left;
+    margin-top: 25%;
+    margin-left: 3%;
+}
+#CJ3{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: left;
+    width: 45%;
+    margin-left: 8%;
+    margin-top: 8%;
+    font-size: 200%;
+}
+#Add3{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: right;
+    margin-right: 8%;
+    margin-top: 8%;
+    font-size: 500%;
+}
+#CJ4{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: right;
+    width: 45%;
+    margin-left: 40%;
+    margin-top: 8%;
+    font-size: 200%;
+}
+#Add4{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: left;
+    margin-left: 3%;
+    font-size: 175%;
+};
