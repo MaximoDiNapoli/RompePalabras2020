@@ -14,7 +14,8 @@
         }],
         "username": "valkyrion2",
         "password": "pelele321",
-        "email": "maximodinapolimail@gmail.com"
+        "email": "maximodinapolimail@gmail.com",
+        "elo": 1000
     },
     {
         "_id": {
@@ -26,7 +27,8 @@
         "friends": ["1"],
         "username": "agathos",
         "password": "pelele123",
-        "email": "eliaselpelele@gmail.com"
+        "email": "eliaselpelele@gmail.com",
+        "elo": 1000
     },
     {
         "_id": {
@@ -40,7 +42,8 @@
         }],
         "username": "Lautaro no te pregunto",
         "password": "pelele321",
-        "email": "lautaroeldeas@gmail.com"
+        "email": "lautaroeldeas@gmail.com",
+        "elo": 1000
     }
 
 
