@@ -1,0 +1,108 @@
+body{
+    background-image:url('Fondo4.jpg');
+    background-size: 100%
+}
+#Pestañas{
+    background-color: rgb(45, 32, 226);
+    height: 50px;
+    position: sticky;
+    top: 0;
+}
+#Pestañas ul{
+    float: middle;
+}
+#Pestañas ul a{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    display: inline-block;
+    padding: 10px;
+    margin-left: 140px;
+    text-decoration: none;
+}
+#Pestañas ul a:hover{
+    background-color: rgb(21, 6, 243);
+}
+#P1{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: left;
+    margin-left: 8%;
+    margin-top: 3%;
+    width: 450px;
+}
+#R1{
+    color: rgb(0, 255, 42);
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 5%;
+    float: right;
+    margin-right: 7%;
+    width: 450px;
+    font-size: 400%;
+}
+#P2{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: right;
+    margin-right: 3%;
+    margin-top: 6%;
+    width: 450px;
+}
+#R2{
+    color: rgb(255, 0, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: left;
+    margin-left: 20%;
+    margin-top: 5%;
+    width: 450px;
+    font-size: 400%;
+}
+#P3{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: left;
+    margin-left: 8%;
+    margin-top: 7%;
+    width: 450px;
+}
+#R3{
+    color: rgb(255, 0, 0);
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 6%;
+    float: right;
+    margin-right: 3%;
+    width: 450px;
+    font-size: 400%;
+}
+#P4{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: right;
+    margin-right: 3%;
+    margin-top: 10%;
+    width: 500px;
+}
+#R4{
+    color: rgb(255, 0, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: left;
+    margin-left: 3%;
+    margin-top: 10%;
+    width: 672px;
+    font-size: 300%;
+}
+#P5{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    float: left;
+    margin-left: 8%;
+    margin-top: 10%;
+    width: 450px;
+}
+#R5{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 3%;
+    float: right;
+    margin-right: 7%;
+    width: 450px;
+}

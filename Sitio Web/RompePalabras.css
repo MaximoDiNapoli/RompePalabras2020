@@ -1,0 +1,66 @@
+body{
+    background-image:url('Fondo1.jpg');
+    background-size: 100%
+}
+#Pestañas{
+    background-color: rgb(45, 32, 226);
+    height: 50px;
+    position: sticky;
+    top: 0;
+}
+#Pestañas ul{
+    float:middle;
+}
+#Pestañas ul a{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive; 
+    display: inline-block;
+    padding: 10px;
+    margin-left: 115px;
+    text-decoration: none;
+}
+#Pestañas ul a:hover{
+    background-color: rgb(64, 51, 245);
+}
+#RompePalabras{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding-top: 20px;
+    padding-left: 100px;
+}
+#RpPl{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    margin: auto;
+    width: 50%;
+    padding-left: 60px;
+}
+#Triv1{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    margin: auto;
+    width: 90%;
+    margin-left: 14%;
+    margin-top: 4%;
+}
+#Descargas{
+    color: rgb(0, 0, 0);
+    font-family: 'Press Start 2P', cursive;
+    background-color: rgb(255, 251, 0);
+}
+#Downloads #yes{
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    margin-left: 330px;
+}
+#YT{
+    margin-top: 3%;
+    margin-left: 35%;
+}
+#Condiciones{
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+}
