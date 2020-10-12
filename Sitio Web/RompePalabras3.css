@@ -3,7 +3,7 @@ body{
     background-size: 100%
 }
 #Pestañas{
-    background-color: rgb(45, 32, 226);
+    background-color: rgb(17, 0, 255);
     height: 50px;
     position: sticky;
     top: 0;
@@ -16,11 +16,11 @@ body{
     font-family: 'Press Start 2P', cursive; 
     display: inline-block;
     padding: 10px;
-    margin-left: 115px;
+    margin-left: 80px;
     text-decoration: none;
 }
 #Pestañas ul a:hover{
-    background-color: rgb(64, 51, 245);
+    background-color: rgb(11, 0, 170);
 }
 #Leaderbroad{
     margin-left: 160px;
