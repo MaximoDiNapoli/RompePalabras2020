@@ -1,30 +1,23 @@
 package BaseDeDatos;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-
-import com.google.gson.Gson;
-
-public class Api {
-
-	public static InteractuarUsuarios interactuarUsuarios = new InteractuarUsuarios();
-
+public class api {
+	
+	public static conexionMongoAtlas productService = new conexionMongoAtlas();
+	
 	public static void main(String[] args){
-		
+		/*
 		Gson gson = new Gson();
 		post("/add", (req, res) -> {
 				res.type("application/json");
-				Usuarios usuario = gson.fromJson(req.body(), Usuarios.class);
-				return interactuarUsuarios.addUsuario(usuario);
+				Usuarios usuario1 = gson.fromJson(req.body(), Usuarios.class);
+				return productService.addUsuario(usuario1);
 		}, gson ::toJson);
 
 		get("/", (req, res) -> {
 			res.type("application/json");
-			return interactuarUsuarios.getAllUsuarios();
+			return productService.getAllUsuarios();
 		}, gson ::toJson);
-		get("/elpepe", (req, res) -> {
-			res.type("application/json");
-			return "el pepe";
-		}, gson ::toJson);
+		*/
+		
 	}
 }
