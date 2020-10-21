@@ -15,7 +15,11 @@ public class Usuarios {
 	private String email;
 	private int elo;
 	
-	public Usuarios(){	
+	public Usuarios(){
+        this.id = 4; 
+        this.username = "elpepe";
+        this.email = "elpepe"; 
+        this.elo = 0; 
 	}
 	
 	public Usuarios(int id, String username, int[] friends, String email, int elo) {
