@@ -1,23 +1,66 @@
 package BaseDeDatos;
 
+import static spark.Spark.get;
+import static spark.Spark.post;
+import com.google.gson.Gson;
+
+
+
 public class api {
 	
-	public static conexionMongoAtlas productService = new conexionMongoAtlas();
+	public static conexionMongoAtlas conexionMongoAtlas = new conexionMongoAtlas();
 	
 	public static void main(String[] args){
-		/*
+		
 		Gson gson = new Gson();
-		post("/add", (req, res) -> {
+		
+		//Agregar usuario
+		post("/AU", (req, res) -> {
 				res.type("application/json");
-				Usuarios usuario1 = gson.fromJson(req.body(), Usuarios.class);
-				return productService.addUsuario(usuario1);
+				Usuarios usuario = gson.fromJson(req.body(), Usuarios.class);
+				return BaseDeDatos.conexionMongoAtlas.insertarUsuario(usuario);
 		}, gson ::toJson);
-
-		get("/", (req, res) -> {
+		
+		//agregar game
+		post("/AG", (req, res) -> {
 			res.type("application/json");
-			return productService.getAllUsuarios();
+			games game = gson.fromJson(req.body(), games.class);
+			return BaseDeDatos.conexionMongoAtlas.insertarGame(game);
+	}, gson ::toJson);
+		
+		/*
+		get("/getU", (req, res) -> {
+			res.type("application/json");
+	        return BaseDeDatos.conexionMongoAtlas.getAllUsuarios();
+		}, gson ::toJson);
+		
+		
+		get("/getG", (req, res) -> {
+			res.type("application/json");
+			BaseDeDatos.conexionMongoAtlas.getAllGames();
+			return "dea games";
 		}, gson ::toJson);
 		*/
+		
+		//Usuario Especifico
+		post("/getUE", (req, res) -> {
+			res.type("application/json");
+			int idABuscar = gson.fromJson(req.body(), int.class);
+	        return BaseDeDatos.conexionMongoAtlas.getUsuarioEspecifico(idABuscar);
+		}, gson ::toJson);
+		
+		//Game Especifico
+		post("/getGE", (req, res) -> {
+			res.type("application/json");
+			int idABuscar = gson.fromJson(req.body(), int.class);
+	        return BaseDeDatos.conexionMongoAtlas.getGameEspecifico(idABuscar);
+		}, gson ::toJson);
+		
+		//elpepe
+		get("/elpepe", (req, res) -> {
+			res.type("application/json");
+	        return "elpepe";
+		}, gson ::toJson);
 		
 	}
 }

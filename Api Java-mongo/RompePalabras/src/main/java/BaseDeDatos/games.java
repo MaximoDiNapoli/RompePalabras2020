@@ -8,15 +8,21 @@ public class games {
 	private int winner;
 	private int player1_id;
 	private int player2_id;
+	private int puntajePlayer1;
+	private int puntajePlayer2;
 	
 	public games(){	
 		
 	}
-	public games(int game_id, int winner, int player1_id, int player2_id) {
+	public games(int game_id, int winner, int player1_id, int player2_id, int puntajePlayer1, int puntajePlayer2) {
 		this.setGame_id(game_id);
 		this.setPlayer2_id(player2_id);
 		this.setPlayer1_id(player1_id);
 		this.setWinner(winner);
+		this.setPuntajePlayer1(puntajePlayer1);
+		this.setPuntajePlayer2(puntajePlayer2);
+		
+		
 	}
 
 	public ObjectId getOid() {
@@ -57,6 +63,18 @@ public class games {
 
 	public void setGame_id(int game_id) {
 		this.game_id = game_id;
+	}
+	public int getPuntajePlayer2() {
+		return puntajePlayer2;
+	}
+	public void setPuntajePlayer2(int puntajePlayer2) {
+		this.puntajePlayer2 = puntajePlayer2;
+	}
+	public int getPuntajePlayer1() {
+		return puntajePlayer1;
+	}
+	public void setPuntajePlayer1(int puntajePlayer1) {
+		this.puntajePlayer1 = puntajePlayer1;
 	}
 
 }

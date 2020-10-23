@@ -1,8 +1,13 @@
 package BaseDeDatos;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+
+import com.sun.tools.javac.code.Attribute.Array;
 
 @Entity
 public class Usuarios {
@@ -11,18 +16,20 @@ public class Usuarios {
 	private ObjectId Oid;
 	private int id;
 	private String username;
-	private int[] friends;
+	private Vector friends;
 	private String email;
 	private int elo;
 	
 	public Usuarios(){
-        this.id = 4; 
+        this.id = 4;  
+        this.friends = new Vector(0);
+        this.friends.addElement(1);
         this.username = "elpepe";
         this.email = "elpepe"; 
         this.elo = 0; 
 	}
 	
-	public Usuarios(int id, String username, int[] friends, String email, int elo) {
+	public Usuarios(int id, String username, Vector friends, String email, int elo) {
 		this.setId(id);
 		this.setUsername(username);
 		this.setFriends(friends);
@@ -54,11 +61,11 @@ public class Usuarios {
 		this.username = username;
 	}
 
-	public int[] getFriends() {
+	public Vector getFriends() {
 		return friends;
 	}
 
-	public void setFriends(int[] friends) {
+	public void setFriends(Vector friends) {
 		this.friends = friends;
 	}
 
