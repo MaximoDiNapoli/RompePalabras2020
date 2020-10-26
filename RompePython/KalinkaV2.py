@@ -1,16 +1,15 @@
 from tkinter import *      
 from tkinter import scrolledtext
 import random
-
+import time 
+from tkinter import messagebox
 
 class App():
     def __init__(self, root):
         self.root = root
         self.nombrus = "SegismundoGoodKing41"
         self.Przyjaciele = ["FriedrichPrussen74", "CarolusAdolphusSweedenForTheWin", "MustafaPashaKebab67"]
-        self.winned = "Partidas Ganadas: 69"
-        self.sao = "Si: Kaczki!!! Yay!!!"
-        self.nombrianni = "Nombre: SegismundoGoodKing41"
+        self.nombrianni = "Nombre:" + self.nombrus
         self.setPreguntas = [0, 1, 2, 3, 4]
         self.pregunta = ["Co kolorowy jest czerwony?", "Carlos Martel evito que los bereberes entraran en...?", "La cacion One Way Or Another pertenece a...?", "Cuantos protones tiene el litio?", "Que libreria conecta sencillamente Python y MongoDb sin utilizar una API?"]
         self.setRespuestas = [0, 1, 1, 1], [1, 2, 1, 1], [1, 2, 1, 1], [1, 2, 1, 1], [1, 2, 1, 1]
@@ -36,7 +35,9 @@ class App():
         self.setRespuestas[4][3] = "MongoConnect"
 
         self.correcta = [4, 1, 1, 4, 1]      
-
+        self.puntaje = 0
+        self.jugados = 0
+        self.respondido = 0
 
         self.login()
 
@@ -50,8 +51,8 @@ class App():
         self.text3 = Text(self.franiki, width = 35, height = 1)
         self.labelu4 = Label(self.franiki, text="Nombre:")
         self.text3.insert(INSERT, "")
-        self.butony = Button(self.franiki, text="Ingresar", width = 20, command=self.clicked2)
-        self.butony4 = Button(self.franiki, text="Salir", width = 20, command=self.clicked)
+        self.butony = Button(self.franiki, text="Ingresar", width = 20, command=self.VerificarCuenta)
+        self.butony4 = Button(self.franiki, text="Salir", width = 20, command=self.SalirDeLaApp)
         self.canvas.pack()  
         self.labelu4.pack()    
         self.text3.pack()
@@ -64,25 +65,22 @@ class App():
     def menu(self):
         self.framur = Frame()
         self.labeluN2 = Label(self.framur, text= self.nombrianni)
-        self.labeluN3 = Label(self.framur, text= self.winned)
-        self.labeluN = Label(self.framur, text= self.sao)
         self.labelu = Label(self.framur, text="Informacion de Usuario:")
+        
         self.labelu.grid(column=1, row=0, sticky = S)
         self.labeluN2.grid(column=1, row=2)
-        self.labeluN3.grid(column=1, row=3)
-        self.labeluN.grid(column=1, row=1)
         self.labelu2 = Label(self.framur, text="Przyjaciele:")
         self.labelu2.grid(column=1, row=4)
         self.nanie = 5
         for nombranie in self.Przyjaciele:
-            
             self.labeluP = Label(self.framur, text= nombranie)
+
             self.labeluP.grid(column=1, row=self.nanie)
             self.nanie = self.nanie + 1
             pass
-        self.butony2 = Button(self.framur, text="Buscar Partida", width = 20, command=self.clicked3)
+        self.butony2 = Button(self.framur, text="Buscar Partida", width = 20, command=self.BuscarPartida)
         self.butony2.grid(column=0, row=3)
-        self.butony3 = Button(self.framur, text="Salir", width = 20, command=self.clicked)
+        self.butony3 = Button(self.framur, text="Salir", width = 20, command=self.SalirDeLaApp)
         self.butony3.grid(column=0, row=4)
 
 
@@ -92,50 +90,55 @@ class App():
         self.labelu = Label(self.franunki, text = self.pregunta[self.numeroR])
         self.labelu.grid(column=2, row=0)
         if self.correcta[self.numeroR] == 1:
-            self.butony1 = Button(self.franunki, text= self.setRespuestas[self.numeroR][0], width = 20, height = 2, bg = "blue", command=self.clicked4)
+            self.butony1 = Button(self.franunki, text= self.setRespuestas[self.numeroR][0], width = 20, height = 2, bg = "blue", command=self.RespuestaCorrecta)
             pass
         else:
-            self.butony1 = Button(self.franunki, text= self.setRespuestas[self.numeroR][0], width = 20, height = 2, bg = "blue", command=self.clicked5)
+            self.butony1 = Button(self.franunki, text= self.setRespuestas[self.numeroR][0], width = 20, height = 2, bg = "blue", command=self.RespuestaIncorrecta)
             pass
 
         if self.correcta[self.numeroR] == 2:
-            self.butony2 = Button(self.franunki, text= self.setRespuestas[self.numeroR][1], width = 20, height = 2, bg = "green", command=self.clicked4)
+            self.butony2 = Button(self.franunki, text= self.setRespuestas[self.numeroR][1], width = 20, height = 2, bg = "green", command=self.RespuestaCorrecta)
             pass
         else:
-            self.butony2 = Button(self.franunki, text= self.setRespuestas[self.numeroR][1], width = 20, height = 2, bg = "green", command=self.clicked5)
+            self.butony2 = Button(self.franunki, text= self.setRespuestas[self.numeroR][1], width = 20, height = 2, bg = "green", command=self.RespuestaIncorrecta)
             pass
 
         if self.correcta[self.numeroR] == 3:
-            self.butony3 = Button(self.franunki, text= self.setRespuestas[self.numeroR][2], width = 20, height = 2, bg = "yellow", command=self.clicked4)
+            self.butony3 = Button(self.franunki, text= self.setRespuestas[self.numeroR][2], width = 20, height = 2, bg = "yellow", command=self.RespuestaCorrecta)
             pass
         else:
-            self.butony3 = Button(self.franunki, text= self.setRespuestas[self.numeroR][2], width = 20, height = 2, bg = "yellow", command=self.clicked5)
+            self.butony3 = Button(self.franunki, text= self.setRespuestas[self.numeroR][2], width = 20, height = 2, bg = "yellow", command=self.RespuestaIncorrecta)
             pass
 
         if self.correcta[self.numeroR] == 4:
-            self.butony4 = Button(self.franunki, text= self.setRespuestas[self.numeroR][3], width = 20, height = 2, bg = "red", command=self.clicked4)
+            self.butony4 = Button(self.franunki, text= self.setRespuestas[self.numeroR][3], width = 20, height = 2, bg = "red", command=self.RespuestaCorrecta)
             pass
         else:
-            self.butony4 = Button(self.franunki, text= self.setRespuestas[self.numeroR][3], width = 20, height = 2, bg = "red", command=self.clicked5)
+            self.butony4 = Button(self.franunki, text= self.setRespuestas[self.numeroR][3], width = 20, height = 2, bg = "red", command=self.RespuestaIncorrecta)
             pass
         self.butony1.grid(column=1, row=1)
         self.butony2.grid(column=1, row=2)
         self.butony3.grid(column=3, row=1)
         self.butony4.grid(column=3, row=2)
+        self.respondido = 0
+        
 
 
     def resultadoP(self):
         self.franalki = Frame()
-        self.labelu.grid(column=1, row=0)
-        self.butonia = Button(self.franalki, text= "Volver a jugar", width = 20, bg = "green", command=self.clicked6)
-        self.butonia2 = Button(self.franalki, text= "Volver al menu", width = 20, bg = "red", command=self.clicked7)
-        self.butonia.grid(column = 0, row = 1)
-        self.butonia2.grid(column = 2, row = 1)
+        self.butonia = Button(self.franalki, text= "Volver a jugar", width = 20, bg = "green", command=self.VolverAJugar)
+        self.butonia2 = Button(self.franalki, text= "Volver al menu", width = 20, bg = "red", command=self.VolverAlMenu)
+        
+        self.labelu = Label(self.franalki, text = "Puntuacion: " + self.puntaje.__str__())
+        self.puntaje = 0
+        self.labelu.grid(column=1, row=1)
+        self.butonia.grid(column = 0, row = 2)
+        self.butonia2.grid(column = 2, row = 2)
     
-    def clicked(self):
+    def SalirDeLaApp(self):
         self.root.destroy()
         
-    def clicked2(self):
+    def VerificarCuenta(self):
         self.nombri = self.text3.get("1.0", "end-1c")
         if (self.nombri == self.nombrus):
             self.franiki.destroy()
@@ -149,38 +152,102 @@ class App():
         
 
         
-    def clicked3(self):
+    def BuscarPartida(self):
         self.framur.destroy()
         self.partida()
         self.franunki.pack()
+        self.Timer()
 
-    def clicked4(self):
-        self.resultadoP()
-        self.labelu = Label(self.franalki, text = "Respuesta correcta")
-        self.labelu.grid(column=1, row=0)
+
+    def RespuestaCorrecta(self):
+        self.respondido = 1
+        self.puntaje = self.puntaje + 1
         self.franunki.destroy()
-        self.franalki.pack()
+        if self.jugados == 3:
+            self.resultadoP()
+            self.labelu = Label(self.franalki, text = "Respuesta correcta")
+            self.labelu.grid(column=1, row=0)
+            
+            self.franalki.pack()
+            self.jugados = 0
+            pass
+        else:
+            self.partida()
+            self.jugados = self.jugados + 1
+            self.franunki.pack()
+            self.Timer()
+            pass
         pass
 
-    def clicked5(self):
-        self.resultadoP()
-        self.labelu = Label(self.franalki, text = "Respuesta incorrecta")
-        self.labelu.grid(column=1, row=0)
+    def RespuestaIncorrecta(self):
+        self.respondido = 1
         self.franunki.destroy()
-        self.franalki.pack()
+        if self.jugados == 3:
+            self.resultadoP()
+            self.labelu = Label(self.franalki, text = "Respuesta incorrecta")
+            self.labelu.grid(column=1, row=0)
+            
+            self.franalki.pack()
+            self.jugados = 0
+            pass
+        else:
+            self.partida()
+            self.jugados = self.jugados + 1
+            self.franunki.pack()
+            self.Timer()
+            pass
         pass
 
-    def clicked6(self):
+    def VolverAJugar(self):
         self.franalki.destroy()
         self.partida()
         self.franunki.pack()
+        self.Timer()
         pass
 
-    def clicked7(self):
+    def VolverAlMenu(self):
         self.franalki.destroy()
         self.menu()
         self.framur.pack()
         pass
+
+    def Timer(self):
+        self.timer = StringVar()
+        self.timer.set("00")
+        self.TRestante = Entry(self.franunki, font=("Arial",18,""), 
+                                              textvariable = self.timer)
+        self.TRestante.grid(column=2, row=1)
+        self.t = 30
+        while self.t > -1: 
+            if self.respondido == 0:
+                mins, secs = divmod(self.t, 60)
+                self.timer.set('{:02d}'.format(secs) )
+                self.root.update()
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                time.sleep(0.05)
+                pass
+            
+            self.t -= 1
+        pass
+
 
 
 
