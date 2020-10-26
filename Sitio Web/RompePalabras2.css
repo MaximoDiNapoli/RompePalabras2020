@@ -2,97 +2,661 @@ body{
     background-image:url('Fondo2.jpg');
     background-size: 100%
 }
+.container{
+    max-width: 2712px;
+    margin: 0 auto;
+    overflow: auto;
+}
 #Pestañas{
-    background-color: rgb(45, 32, 226);
-    height: 50px;
-    position: sticky;
+    background-color: rgb(17, 0, 255);
     top: 0;
+    display: flex;
+    text-decoration: none;
+    text-align: center;
+    align-items: stretch;
+    justify-content: space-evenly;
+    align-items: center;
 }
-#Pestañas ul{
-    float: middle;
-}
-#Pestañas ul a{
+#Pestañas a{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive; 
-    display: inline-block;
-    padding: 10px;
-    margin-left: 140px;
-    text-decoration: none;
 }
-#Pestañas ul a:hover{
-    background-color: rgb(21, 6, 243);
+#Pestañas a:hover{
+    background-color: rgb(11, 0, 170);
 }
 #Como{
+    display: flex;
+    align-items: stretch;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     color: rgb(255, 251, 0);
+    text-align: center;
     font-family: 'Press Start 2P', cursive;
-    margin: auto;
-    width: 50%;
-    margin-top: 2%;
-    margin-left: 35%
+    margin-top: 3%;
 }
 #CJ1{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    float: left;
-    width: 45%;
-    margin-left: 8%;
-    margin-top: 3%;
-    font-size: 200%;
 }
 #Add1{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    font-size: 400%;
-    margin-top: 3%;
-    float: right;
-    margin-right: 7%;
+    font-style: italic;
 }
 #CJ2{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    float: right;
-    width: 40%;
-    margin-right: 3%;
-    margin-top: 10%;
-    font-size: 200%;
-}
-#Add2{
-    color: rgb(255, 251, 0);
-    font-family: 'Press Start 2P', cursive;
-    float: top left;
-    margin-top: 25%;
-    margin-left: 3%;
 }
 #CJ3{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    float: left;
-    width: 45%;
-    margin-left: 8%;
-    margin-top: 8%;
-    font-size: 200%;
 }
 #Add3{
-    color: rgb(255, 251, 0);
+    color: rgb(197, 5, 5);
     font-family: 'Press Start 2P', cursive;
-    float: right;
-    margin-right: 8%;
-    margin-top: 8%;
-    font-size: 500%;
 }
 #CJ4{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    float: right;
-    width: 45%;
-    margin-left: 40%;
-    margin-top: 8%;
-    font-size: 200%;
 }
-#Add4{
-    color: rgb(255, 251, 0);
-    font-family: 'Press Start 2P', cursive;
-    float: left;
-    margin-left: 3%;
-    font-size: 175%;
-};
+@media (max-width: 319px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #Como{
+        font-size: 5vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 3.5vw;
+        text-align: center;
+    }
+    #Add1{
+        text-align: center;
+        font-size: 7vw;
+        margin-top: 5%;
+        margin-left: 22vw;
+        margin-right: 22vw;
+    }
+    #CJ2{
+        margin-top: 10%;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    #Add2{
+        margin-top: 5%;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+    #Add2 img{
+        height: 40vw;
+        width: 80vw;
+    }
+    #CJ3{
+        margin-top: 12%;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    #Add3{
+        font-size: 12vw;
+        margin-top: 14%;
+    }
+    #CJ4{
+        margin-top: 15%;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    #Add4{
+        margin-top: 12%;
+        margin-bottom: 4%;
+        margin-left: 8vw;
+        margin-right: 8vw;
+    }
+    #Add4 img{
+        width: 75vw;
+        height: 50vw;
+    }
+}
+@media (max-width: 374px) and (min-width: 320px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #Como{
+        font-size: 5vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 3.5vw;
+        text-align: center;
+    }
+    #Add1{
+        text-align: center;
+        font-size: 7vw;
+        margin-top: 5%;
+        margin-left: 22vw;
+        margin-right: 22vw;
+    }
+    #CJ2{
+        margin-top: 10%;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    #Add2{
+        margin-top: 5%;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+    #Add2 img{
+        height: 40vw;
+        width: 80vw;
+    }
+    #CJ3{
+        margin-top: 12%;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    #Add3{
+        font-size: 12vw;
+        margin-top: 14%;
+    }
+    #CJ4{
+        margin-top: 15%;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    #Add4{
+        margin-top: 12%;
+        margin-bottom: 4%;
+        margin-left: 8vw;
+        margin-right: 8vw;
+    }
+    #Add4 img{
+        width: 75vw;
+        height: 50vw;
+    }
+}
+@media (max-width: 424px) and (min-width: 375px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #Como{
+        font-size: 5vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 3.5vw;
+        text-align: center;
+    }
+    #Add1{
+        text-align: center;
+        font-size: 7vw;
+        margin-top: 5%;
+        margin-left: 22vw;
+        margin-right: 22vw;
+    }
+    #CJ2{
+        margin-top: 10%;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    #Add2{
+        margin-top: 5%;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+    #Add2 img{
+        height: 40vw;
+        width: 80vw;
+    }
+    #CJ3{
+        margin-top: 12%;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    #Add3{
+        font-size: 12vw;
+        margin-top: 14%;
+    }
+    #CJ4{
+        margin-top: 15%;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+    #Add4{
+        margin-top: 12%;
+        margin-bottom: 4%;
+        margin-left: 8vw;
+        margin-right: 8vw;
+    }
+    #Add4 img{
+        width: 75vw;
+        height: 50vw;
+    }
+}
+@media (max-width: 575px) and (min-width: 425px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #Como{
+        font-size: 5vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 3.5vw;
+        text-align: center;
+        display: flex;
+        align-items: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #Add1{
+        text-align: center;
+        font-size: 7vw;
+        margin-top: 5%;
+        display: flex;
+        align-items: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #CJ2{
+        margin-top: 10%;
+        text-align: center;
+        font-size: 3.5vw;
+        display: flex;
+        align-items: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #Add2{
+        margin-top: 5%;
+        display: flex;
+        align-items: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #Add2 img{
+        height: 40vw;
+        width: 80vw;
+    }
+    #CJ3{
+        margin-top: 12%;
+        text-align: center;
+        font-size: 3.5vw;
+        display: flex;
+        align-items: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #Add3{
+        font-size: 12vw;
+        margin-top: 14%;
+        text-align: center;
+        display: flex;
+        align-items: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #CJ4{
+        margin-top: 15%;
+        text-align: center;
+        font-size: 3.5vw;
+        display: flex;
+        align-items: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #Add4{
+        margin-top: 12%;
+        margin-bottom: 4%;
+        display: flex;
+        align-items: stretch;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #Add4 img{
+        width: 75vw;
+        height: 50vw;
+    }
+}
+@media (max-width: 767px) and (min-width: 576px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Como{
+        font-size: 5vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 3vw;
+        text-align: left;
+    }
+    #Add1{
+        text-align: center;
+        font-size: 6vw;
+        margin-top: 12%;
+    }
+    #CJ2{
+        margin-top: 10%;
+        text-align: left;
+        font-size: 3vw;
+    }
+    #Add2{
+        margin-top: 14%;
+    }
+    #Add2 img{
+        height: 24vw;
+        width: 45vw;
+    }
+    #CJ3{
+        margin-top: 12%;
+        text-align: left;
+        font-size: 3vw;
+    }
+    #Add3{
+        font-size: 7vw;
+        margin-top: 15%;
+        text-align: center;
+    }
+    #CJ4{
+        margin-top: 15%;
+        text-align: left;
+        font-size: 3vw;
+    }
+    #Add4{
+        margin-top: 22%;
+        margin-bottom: 4%;
+    }
+    #Add4 img{
+        width: 45vw;
+        height: 30vw;
+    }
+}
+@media (max-width: 1023px) and (min-width: 768px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Como{
+        font-size: 4vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 2.5vw;
+        text-align: left;
+    }
+    #Add1{
+        text-align: right;
+        font-size: 6.5vw;
+        margin-top: 12%;
+    }
+    #CJ2{
+        margin-top: 10%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add2{
+        margin-top: 12%;
+    }
+    #Add2 img{
+        height: 23vw;
+        width: 45vw;
+    }
+    #CJ3{
+        margin-top: 6%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add3{
+        text-align: center;
+        font-size: 8vw;
+        margin-top: 6%;
+    }
+    #CJ4{
+        margin-top: 5%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add4{
+        margin-top: 8%;
+    }
+    #Add4 img{
+        width: 48vw;
+        height: 30vw;
+    }
+}
+@media (max-width: 1126px) and (min-width: 1024px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Como{
+        font-size: 3.5vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 2.5vw;
+        text-align: left;
+    }
+    #Add1{
+        text-align: right;
+        font-size: 6.5vw;
+        margin-top: 9%;
+    }
+    #CJ2{
+        margin-top: 13%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add2{
+        margin-top: 14%;
+    }
+    #Add2 img{
+        height: 25vw;
+        width: 48vw;
+    }
+    #CJ3{
+        margin-top: 15%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add3{
+        text-align: center;
+        font-size: 7.5vw;
+        margin-top: 15%;
+    }
+    #CJ4{
+        margin-top: 12%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add4{
+        margin-top: 19%;
+    }
+    #Add4 img{
+        width: 47vw;
+        height: 27vw;
+    }
+}
+@media (max-width: 1439px) and (min-width: 1125px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Como{
+        font-size: 3.5vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 2.5vw;
+        text-align: left;
+    }
+    #Add1{
+        text-align: right;
+        font-size: 6.5vw;
+        margin-top: 9%;
+    }
+    #CJ2{
+        margin-top: 13%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add2{
+        margin-top: 14%;
+    }
+    #Add2 img{
+        height: 25vw;
+        width: 47vw;
+    }
+    #CJ3{
+        margin-top: 15%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add3{
+        text-align: center;
+        font-size: 7.5vw;
+        margin-top: 15%;
+    }
+    #CJ4{
+        margin-top: 5%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add4{
+        margin-top: 10%;
+    }
+    #Add4 img{
+        width: 47vw;
+        height: 27vw;
+    }
+}
+@media (max-width: 2559px) and (min-width: 1440px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Como{
+        font-size: 3.5vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 2.5vw;
+        text-align: left;
+    }
+    #Add1{
+        text-align: right;
+        font-size: 6.5vw;
+        margin-top: 9%;
+    }
+    #CJ2{
+        margin-top: 13%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add2{
+        margin-top: 14%;
+    }
+    #Add2 img{
+        height: 24vw;
+        width: 47vw;
+    }
+    #CJ3{
+        margin-top: 15%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add3{
+        text-align: center;
+        font-size: 7.5vw;
+        margin-top: 15%;
+    }
+    #CJ4{
+        margin-top: 5%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add4{
+        margin-top: 10%;
+    }
+    #Add4 img{
+        width: 47vw;
+        height: 27vw;
+    }
+}
+@media (min-width: 2560px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Como{
+        font-size: 3.5vw;
+    }
+    #CJ1{
+        margin-top: 8%;
+        font-size: 2.5vw;
+        text-align: left;
+    }
+    #Add1{
+        text-align: right;
+        font-size: 6.5vw;
+        margin-top: 9%;
+    }
+    #CJ2{
+        margin-top: 13%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add2{
+        margin-top: 14%;
+    }
+    #Add2 img{
+        height: 25vw;
+        width: 48vw;
+    }
+    #CJ3{
+        margin-top: 15%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add3{
+        text-align: center;
+        font-size: 7.5vw;
+        margin-top: 15%;
+    }
+    #CJ4{
+        margin-top: 5%;
+        text-align: left;
+        font-size: 2.5vw;
+    }
+    #Add4{
+        margin-top: 10%;
+    }
+    #Add4 img{
+        width: 47vw;
+        height: 27vw;
+    }
+}

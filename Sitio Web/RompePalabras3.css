@@ -2,75 +2,88 @@ body{
     background-image:url('Fondo3.jpg');
     background-size: 100%
 }
+.container{
+    max-width: 2712px;
+    margin: 0 auto;
+    overflow: auto;
+}
 #Pestañas{
     background-color: rgb(17, 0, 255);
-    height: 50px;
     position: sticky;
     top: 0;
+    display: flex;
+    align-items: center;
 }
-#Pestañas ul{
-    float:middle;
-}
-#Pestañas ul a{
+#Pestañas a{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive; 
-    display: inline-block;
-    padding: 10px;
-    margin-left: 80px;
-    text-decoration: none;
+    text-align: center;
 }
-#Pestañas ul a:hover{
+#Pestañas a:hover{
     background-color: rgb(11, 0, 170);
 }
-#Leaderbroad{
-    margin-left: 160px;
-    margin-top: 15px;
-    display: inline-block;
+#Leaderboard{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: yellow; 
     border: 5px solid black;
-    width: 1000px;
-    height: 620px;
-    padding: 30px;
+    margin-top: 2%;
 }
 #section1 {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: yellow; 
-    border: 5px solid black;
-    height:550px;
-    width:300px;
     overflow: scroll;
     overflow-y: scroll;
     overflow-x: hidden;
+    font-family: 'Press Start 2P', cursive; 
 }
-#section2 {
-    display: inline-block;
-    background-color: yellow; 
-    border: 5px solid black;
-    height:550px;
-    width:300px;
-    overflow: scroll;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-#section3 {
-    display: inline-block;
-    background-color: yellow; 
-    border: 5px solid black;
-    height:550px;
-    width:300px;
-    overflow: scroll;
-    overflow-y: scroll;
-    overflow-x: hidden;
+#section1 label{
+    margin-top: 1%;
+    text-align: center; 
 }
 #login{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    margin-left: 450px;
-    margin-bottom: 50px;
-    margin-top: 20px;
-    width: 400px;
     text-align: center;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2%;
+}
+#Links{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#Cuenta{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1%;
+}
+#Loggs{
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 3%;
 }
 a:link {
     color: rgb(255, 251, 0);
@@ -83,4 +96,278 @@ a:visited{
 }
 a:visited:hover{
     color: rgb(151, 0, 0);
+}
+@media (max-width: 319px){
+    #Pestañas{
+        font-size: 4vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #section1 th{
+        font-size: 4vw;
+    }
+    #section1 td{
+        font-size: 5vw;
+    }
+    #section1 label{
+        font-size: 6vw;
+    }
+    #login{
+        font-size: 4vw;
+    }
+    #Links{
+        font-size: 4vw;
+    }
+    #Cuenta{
+        font-size: 4vw;
+    }
+    #Loggs{
+        font-size: 4vw;
+    }
+}
+@media (max-width: 374px) and (min-width: 320px){
+    #Pestañas{
+        font-size: 4vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #section1 th{
+        font-size: 4vw;
+    }
+    #section1 td{
+        font-size: 5vw;
+    }
+    #section1 label{
+        font-size: 6vw;
+    }
+    #login{
+        font-size: 4vw;
+    }
+    #Links{
+        font-size: 4vw;
+    }
+    #Cuenta{
+        font-size: 4vw;
+    }
+    #Loggs{
+        font-size: 4vw;
+    }
+}
+@media (max-width: 424px) and (min-width: 375px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #section1 th{
+        font-size: 4vw;
+    }
+    #section1 td{
+        font-size: 4vw;
+    }
+    #section1 label{
+        font-size: 5vw;
+    }
+    #login{
+        font-size: 4vw;
+    }
+    #Links{
+        font-size: 4vw;
+    }
+    #Cuenta{
+        font-size: 4vw;
+    }
+    #Loggs{
+        font-size: 4vw;
+    }
+}
+@media (max-width: 767px) and (min-width: 425px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #Leaderboard{
+        margin-right: 3%;
+        margin-left: 3%;
+    }
+    #section1 th{
+        font-size: 3vw;
+    }
+    #section1 td{
+        font-size: 3vw;
+    }
+    #section1 label{
+        font-size: 3vw;
+    }
+    #login{
+        font-size: 3vw;
+    }
+    #Links{
+        font-size: 3vw;
+    }
+    #Cuenta{
+        font-size: 3vw;
+    }
+    #Loggs{
+        font-size: 3vw;
+    }
+}
+@media (max-width: 1023px) and (min-width: 768px){
+    #Pestañas{
+        font-size: 2vw;
+        justify-content: space-evenly;
+    }
+    #Leaderboard{
+        margin-right: 18%;
+        margin-left: 18%;
+    }
+    #section1 th{
+        font-size: 2vw;
+    }
+    #section1 td{
+        font-size: 2vw;
+    }
+    #section1 label{
+        font-size: 2vw;
+    }
+    #login{
+        font-size: 2vw;
+    }
+    #Links{
+        font-size: 2vw;
+    }
+    #Cuenta{
+        font-size: 2vw;
+    }
+    #Loggs{
+        font-size: 2vw;
+    }
+}
+@media (max-width: 1124px) and (min-width: 1024px){
+    #Pestañas{
+        font-size: 2vw;
+        justify-content: space-evenly;
+    }
+    #Leaderboard{
+        margin-right: 19%;
+        margin-left: 19%;
+    }
+    #section1 th{
+        font-size: 2vw;
+    }
+    #section1 td{
+        font-size: 2vw;
+    }
+    #section1 label{
+        font-size: 2vw;
+    }
+    #login{
+        font-size: 2vw;
+    }
+    #Links{
+        font-size: 2vw;
+    }
+    #Cuenta{
+        font-size: 2vw;
+    }
+    #Loggs{
+        font-size: 2vw;
+    }
+}
+@media (max-width: 1439px) and (min-width: 1125px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 10px;
+    }
+    #Leaderboard{
+        margin-right: 27%;
+        margin-left: 27%;
+    }
+    #section1 th{
+        font-size: 1.5vw;
+    }
+    #section1 td{
+        font-size: 1.5vw;
+    }
+    #section1 label{
+        font-size: 1.5vw;
+    }
+    #login{
+        font-size: 1.5vw;
+    }
+    #Links{
+        font-size: 1.5vw;
+    }
+    #Cuenta{
+        font-size: 1.5vw;
+    }
+    #Loggs{
+        font-size: 1.5vw;
+    }
+}
+@media (max-width: 2559px) and (min-width: 1440px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 10px;
+    }
+    #Leaderboard{
+        margin-right: 27%;
+        margin-left: 27%;
+    }
+    #section1 th{
+        font-size: 1.5vw;
+    }
+    #section1 td{
+        font-size: 1.5vw;
+    }
+    #section1 label{
+        font-size: 1.5vw;
+    }
+    #login{
+        font-size: 1.5vw;
+    }
+    #Links{
+        font-size: 1.5vw;
+    }
+    #Cuenta{
+        font-size: 1.5vw;
+    }
+    #Loggs{
+        font-size: 1.5vw;
+    }
+}
+@media (min-width: 2560px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 10px;
+    }
+    #Leaderboard{
+        margin-right: 27%;
+        margin-left: 27%;
+    }
+    #section1 th{
+        font-size: 1.5vw;
+    }
+    #section1 td{
+        font-size: 1.5vw;
+    }
+    #section1 label{
+        font-size: 1.5vw;
+    }
+    #login{
+        font-size: 1.5vw;
+    }
+    #Links{
+        font-size: 1.5vw;
+    }
+    #Cuenta{
+        font-size: 1.5vw;
+    }
+    #Loggs{
+        font-size: 1.5vw;
+    }
 }

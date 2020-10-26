@@ -2,65 +2,309 @@ body{
     background-image:url('Fondo1.jpg');
     background-size: 100%
 }
+.container{
+    max-width: 2712px;
+    margin: 0 auto;
+    overflow: auto;
+}
 #Pestañas{
-    background-color: rgb(45, 32, 226);
-    height: 50px;
+    background-color: rgb(17, 0, 255);
     position: sticky;
     top: 0;
+    display: flex;
+    text-decoration: none;
+    text-align: center;
+    align-items: stretch;
+    justify-content: space-evenly;
+    align-items: center;
 }
-#Pestañas ul{
-    float:middle;
-}
-#Pestañas ul a{
+#Pestañas a{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive; 
-    display: inline-block;
-    padding: 10px;
-    margin-left: 115px;
-    text-decoration: none;
 }
-#Pestañas ul a:hover{
-    background-color: rgb(64, 51, 245);
+#Pestañas a:hover{
+    background-color: rgb(11, 0, 170);
 }
 #RompePalabras{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-    padding-top: 20px;
-    padding-left: 100px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2%;
 }
 #RpPl{
+    display: flex;
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    margin: auto;
-    width: 50%;
-    padding-left: 60px;
+    text-align: center;
+    align-items: stretch;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2%;
 }
 #Triv1{
+    display: flex;
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    margin: auto;
-    width: 90%;
-    margin-left: 14%;
-    margin-top: 4%;
+    text-align: center;
+    align-items: stretch;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1%;
 }
 #Descargas{
+    display: flex;
     color: rgb(0, 0, 0);
     font-family: 'Press Start 2P', cursive;
     background-color: rgb(255, 251, 0);
-}
-#Downloads #yes{
-    color: rgb(0, 0, 0);
-    font-size: 25px;
-    margin-left: 330px;
-}
-#YT{
-    margin-top: 3%;
-    margin-left: 35%;
-}
-#Condiciones{
     text-align: center;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 20px;
+    border: 3px solid black; 
+    align-items: stretch;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3%;
+}
+#D1{
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2%;
+}
+#D2 a{
+    display: flex;
+    color: rgb(0, 0, 0);
+    align-items: stretch;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+@media (max-width: 319px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #RompePalabras img{
+        height: 50vw;
+        width: 50vw;
+    }
+    #RpPl{
+        font-size: 5vw;
+    }
+    #Triv1{
+        font-size: 3vw;
+    }
+    #D1{
+        font-size: 3vw;
+    }
+    #D2 a{
+        font-size: 4vw;
+    }
+}
+@media (max-width: 374px) and (min-width: 320px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #RompePalabras img{
+        height: 50vw;
+        width: 50vw;
+    }
+    #RpPl{
+        font-size: 5vw;
+    }
+    #Triv1{
+        font-size: 3vw;
+    }
+    #D1{
+        font-size: 3vw;
+    }
+    #D2 a{
+        font-size: 4vw;
+    }
+}
+@media (max-width: 424px) and (min-width: 375px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #RompePalabras img{
+        height: 50vw;
+        width: 50vw;
+    }
+    #RpPl{
+        font-size: 5vw;
+    }
+    #Triv1{
+        font-size: 3vw;
+    }
+    #D1{
+        font-size: 3vw;
+    }
+    #D2 a{
+        font-size: 4vw;
+    }
+}
+@media (max-width: 767px) and (min-width: 425px){
+    #Pestañas{
+        font-size: 2vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #RompePalabras img{
+        height: 40vw;
+        width: 40vw;
+    }
+    #RpPl{
+        font-size: 4vw;
+    }
+    #Triv1{
+        font-size: 2vw;
+    }
+    #Descargas{
+        margin-bottom: 3%;
+    }
+    #D1{
+        font-size: 3vw;
+    }
+    #D2 a{
+        font-size: 4vw;
+    }
+}
+@media (max-width: 1023px) and (min-width: 768px){
+    #Pestañas{
+        font-size: 2vw;
+        justify-content: space-evenly;
+        padding: 10px;
+    }
+    #RompePalabras img{
+        height: 30vw;
+        width: 30vw;
+    }
+    #RpPl{
+        font-size: 3vw;
+    }
+    #Triv1{
+        font-size: 2vw;
+    }
+    #D1{
+        font-size: 3vw;
+    }
+    #D2 a{
+        font-size: 3vw;
+    }
+}
+@media (max-width: 1124px) and (min-width: 1024px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 10px;
+    }
+    #RompePalabras img{
+        height: 30vw;
+        width: 30vw;
+    }
+    #RpPl{
+        font-size: 3vw;
+    }
+    #Triv1{
+        font-size: 2vw;
+    }
+    #Descargas{
+        margin-bottom: 3%;
+    }
+    #D1{
+        font-size: 3vw;
+    }
+    #D2 a{
+        font-size: 3vw;
+    }
+}
+@media (max-width: 1439px) and (min-width: 1125px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 10px;
+    }
+    #RompePalabras img{
+        height: 30vw;
+        width: 30vw;
+    }
+    #RpPl{
+        font-size: 2.5vw;
+    }
+    #Triv1{
+        font-size: 1.5vw;
+    }
+    #Descargas{
+        margin-bottom: 3%;
+    }
+    #D1{
+        font-size: 2vw;
+    }
+    #D2 a{
+        font-size: 3vw;
+    }
+}
+@media (max-width: 2559px) and (min-width: 1440px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 10px;
+    }
+    #RompePalabras img{
+        height: 30vw;
+        width: 30vw;
+    }
+    #RpPl{
+        font-size: 2.5vw;
+    }
+    #Triv1{
+        font-size: 2vw;
+    }
+    #Descargas{
+        margin-bottom: 3%;
+    }
+    #D1{
+        font-size: 2vw;
+    }
+    #D2 a{
+        font-size: 3vw;
+    }
+}
+@media (min-width: 2560px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 10px;
+    }
+    #RompePalabras img{
+        height: 30vw;
+        width: 30vw;
+    }
+    #RpPl{
+        font-size: 3vw;
+    }
+    #Triv1{
+        font-size: 2vw;
+    }
+    #Descargas{
+        margin-bottom: 3%;
+    }
+    #D1{
+        font-size: 2.5vw;
+    }
+    #D2 a{
+        font-size: 3vw;
+    }
 }

@@ -2,107 +2,630 @@ body{
     background-image:url('Fondo4.jpg');
     background-size: 100%
 }
+.container{
+    max-width: 2712px;
+    margin: 0 auto;
+    overflow: auto;
+}
 #Pestañas{
     background-color: rgb(17, 0, 255);
-    height: 50px;
-    position: sticky;
     top: 0;
+    display: flex;
+    text-decoration: none;
+    text-align: center;
+    align-items: stretch;
+    justify-content: space-evenly;
+    align-items: center;
 }
-#Pestañas ul{
-    float:middle;
-}
-#Pestañas ul a{
+#Pestañas a{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive; 
-    display: inline-block;
-    padding: 10px;
-    margin-left: 80px;
-    text-decoration: none;
 }
-#Pestañas ul a:hover{
+#Pestañas a:hover{
     background-color: rgb(11, 0, 170);
+}
+#Titulo{
+    display: flex;
+    align-items: stretch;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: rgb(255, 251, 0);
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 4%;
 }
 #P1{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    float: left;
-    margin-left: 8%;
-    margin-top: 3%;
-    width: 450px;
+    text-align: left;
 }
 #R1{
     color: rgb(0, 255, 42);
     font-family: 'Press Start 2P', cursive;
-    margin-top: 5%;
-    float: right;
-    margin-right: 7%;
-    width: 450px;
-    font-size: 400%;
+    text-align: center;
 }
 #P2{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    float: right;
-    margin-right: 3%;
-    margin-top: 6%;
-    width: 450px;
+    text-align: right;
 }
 #R2{
     color: rgb(255, 0, 0);
     font-family: 'Press Start 2P', cursive;
-    float: left;
-    margin-left: 20%;
-    margin-top: 5%;
-    width: 450px;
-    font-size: 400%;
+    text-align: center;
 }
 #P3{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    float: left;
-    margin-left: 8%;
-    margin-top: 7%;
-    width: 450px;
+    text-align: left;
 }
 #R3{
     color: rgb(255, 0, 0);
     font-family: 'Press Start 2P', cursive;
-    margin-top: 6%;
-    float: right;
-    margin-right: 3%;
-    width: 450px;
-    font-size: 400%;
+    text-align: center;
 }
 #P4{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    float: right;
-    margin-right: 3%;
-    margin-top: 10%;
-    width: 500px;
+    text-align: right;
 }
 #R4{
     color: rgb(255, 0, 0);
     font-family: 'Press Start 2P', cursive;
-    float: left;
-    margin-left: 3%;
-    margin-top: 10%;
-    width: 672px;
-    font-size: 300%;
+    text-align: center;
 }
 #P5{
     color: rgb(255, 251, 0);
     font-family: 'Press Start 2P', cursive;
-    float: left;
-    margin-left: 8%;
-    margin-top: 10%;
-    width: 450px;
+    text-align: left;
 }
-#R5{
-    color: rgb(255, 251, 0);
-    font-family: 'Press Start 2P', cursive;
-    margin-top: 3%;
-    float: right;
-    margin-right: 7%;
-    width: 450px;
+@media (max-width: 319px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #Titulo{
+        font-size: 6vw;
+    }
+    #P1{
+        text-align: center;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-bottom: 4%;
+    }
+    #P2{
+        text-align: center;
+    }
+    #R2{
+        font-size: 9vw;
+        margin-bottom: 4%;
+    }
+    #P3{
+        text-align: center;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-bottom: 4%;
+    }
+    #P4{
+        text-align: center;
+    }
+    #R4{
+        font-size: 8vw;
+        margin-bottom: 4%;
+    }
+    #P5{
+        text-align: center;
+    }
+    #R5{
+        margin-bottom: 4%;
+        text-align: center;
+    }
+    #R5 img{
+        height: 70vw;
+        width: 80vw;
+    }
+}
+@media (max-width: 374px) and (min-width: 320px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #Titulo{
+        font-size: 6vw;
+    }
+    #P1{
+        text-align: center;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-bottom: 4%;
+    }
+    #P2{
+        text-align: center;
+    }
+    #R2{
+        font-size: 9vw;
+        margin-bottom: 4%;
+    }
+    #P3{
+        text-align: center;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-bottom: 4%;
+    }
+    #P4{
+        text-align: center;
+    }
+    #R4{
+        font-size: 8vw;
+        margin-bottom: 4%;
+    }
+    #P5{
+        text-align: center;
+    }
+    #R5{
+        margin-bottom: 4%;
+        text-align: center;
+    }
+    #R5 img{
+        height: 70vw;
+        width: 80vw;
+    }
+}
+@media (max-width: 424px) and (min-width: 375px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #Titulo{
+        font-size: 6vw;
+    }
+    #P1{
+        text-align: center;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-bottom: 4%;
+    }
+    #P2{
+        text-align: center;
+    }
+    #R2{
+        font-size: 9vw;
+        margin-bottom: 4%;
+    }
+    #P3{
+        text-align: center;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-bottom: 4%;
+    }
+    #P4{
+        text-align: center;
+    }
+    #R4{
+        font-size: 8vw;
+        margin-bottom: 4%;
+    }
+    #P5{
+        text-align: center;
+    }
+    #R5{
+        margin-bottom: 4%;
+        text-align: center;
+    }
+    #R5 img{
+        height: 70vw;
+        width: 80vw;
+    }
+}
+@media (max-width: 575px) and (min-width: 425px){
+    #Pestañas{
+        font-size: 3vw;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #Titulo{
+        font-size: 6vw;
+    }
+    #P1{
+        text-align: center;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-bottom: 4%;
+    }
+    #P2{
+        text-align: center;
+    }
+    #R2{
+        font-size: 9vw;
+        margin-bottom: 4%;
+    }
+    #P3{
+        text-align: center;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-bottom: 4%;
+    }
+    #P4{
+        text-align: center;
+    }
+    #R4{
+        font-size: 8vw;
+        margin-bottom: 4%;
+    }
+    #P5{
+        text-align: center;
+    }
+    #R5{
+        margin-bottom: 4%;
+        text-align: center;
+    }
+    #R5 img{
+        height: 70vw;
+        width: 80vw;
+    }
+}
+@media (max-width: 767px) and (min-width: 576px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Titulo{
+        font-size: 5vw;
+    }
+    #P1{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-bottom: 4%;
+    }
+    #P2{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R2{
+        font-size: 6vw;
+        margin-top: 6%;
+    }
+    #P3{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P4{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R4{
+        font-size: 5vw;
+        margin-top: 15%;
+    }
+    #P5{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R5{
+        margin-top: 6%;
+    }
+    #R5 img{
+        height: 38vw;
+        width: 45vw;
+    }
+}
+@media (max-width: 1023px) and (min-width: 768px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Titulo{
+        font-size: 5vw;
+    }
+    #P1{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P2{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R2{
+        font-size: 6vw;
+        margin-top: 6%;
+    }
+    #P3{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P4{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R4{
+        font-size: 5vw;
+        margin-top: 15%;
+    }
+    #P5{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R5{
+        margin-top: 5%;
+    }
+    #R5 img{
+        height: 38vw;
+        width: 45vw;
+    }
+}
+@media (max-width: 1126px) and (min-width: 1024px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Titulo{
+        font-size: 4.5vw;
+    }
+    #P1{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P2{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R2{
+        font-size: 7vw;
+        margin-top: 6%;
+        text-align: center;
+    }
+    #P3{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P4{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R4{
+        font-size: 5vw;
+        margin-top: 15%;
+    }
+    #P5{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R5{
+        margin-top: 5%;
+    }
+    #R5 img{
+        height: 38vw;
+        width: 45vw;
+    }
+}
+@media (max-width: 1439px) and (min-width: 1125px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Titulo{
+        font-size: 4.5vw;
+    }
+    #P1{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P2{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R2{
+        font-size: 7vw;
+        margin-top: 6%;
+        text-align: center;
+    }
+    #P3{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P4{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R4{
+        font-size: 5vw;
+        margin-top: 15%;
+    }
+    #P5{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R5{
+        margin-top: 5%;
+    }
+    #R5 img{
+        height: 38vw;
+        width: 45vw;
+    }
+}
+@media (max-width: 2559px) and (min-width: 1440px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Titulo{
+        font-size: 4.5vw;
+    }
+    #P1{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P2{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R2{
+        font-size: 7vw;
+        margin-top: 6%;
+        text-align: center;
+    }
+    #P3{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P4{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R4{
+        font-size: 5vw;
+        margin-top: 15%;
+    }
+    #P5{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R5{
+        margin-top: 5%;
+    }
+    #R5 img{
+        height: 38vw;
+        width: 45vw;
+    }
+}
+@media (min-width: 2560px){
+    #Pestañas{
+        font-size: 1.5vw;
+        justify-content: space-evenly;
+        padding: 1vw;
+    }
+    #Titulo{
+        font-size: 4.5vw;
+    }
+    #P1{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R1{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P2{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R2{
+        font-size: 7vw;
+        margin-top: 6%;
+        text-align: center;
+    }
+    #P3{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R3{
+        font-size: 12vw;
+        margin-top: 5%;
+    }
+    #P4{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R4{
+        font-size: 5vw;
+        margin-top: 15%;
+    }
+    #P5{
+        text-align: left;
+        font-size: 2vw;
+        margin-bottom: 4%;
+    }
+    #R5{
+        margin-top: 5%;
+    }
+    #R5 img{
+        height: 38vw;
+        width: 45vw;
+    }
 }
