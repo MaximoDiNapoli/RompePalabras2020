@@ -29,11 +29,11 @@ public class api {
 		}, gson ::toJson);
 		
 		
-		//setear Ganador(recibe 1: id del game 2: el ganador)
-		post("/setearGanador", (req, res) -> {
+		//cierra la partida(solo funciona si uno de los 2 usuarios tiene 100 pt)
+		post("/cerrarPartida", (req, res) -> {
 			res.type("application/json");
-			int[] setearGanador = gson.fromJson(req.body(), int[].class);
-			return BaseDeDatos.conexionMongoAtlas.setearGanador(setearGanador);
+			int IdPartida = gson.fromJson(req.body(), int.class);
+			return BaseDeDatos.conexionMongoAtlas.cerrarPartida(IdPartida);
 		}, gson ::toJson);
 		
 		

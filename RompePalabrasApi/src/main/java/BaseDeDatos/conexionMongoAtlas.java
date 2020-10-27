@@ -1,6 +1,9 @@
 package BaseDeDatos;
 
+import java.util.ArrayList;
 import java.util.Vector;
+
+import javax.xml.crypto.Data;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -26,6 +29,7 @@ import org.bson.conversions.Bson;
 import org.bson.json.JsonWriterSettings;
 
 import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.lt;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.*;
 
@@ -39,14 +43,46 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionUsuarios = RompePalabras.getCollection("usuarios");
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
-
 	public static void main(String[] args) {
+		
 	}
 	
+	public static int[] obtenerIdsUsuariosGame(int partidaID) {
+		Bson filterIdPartida = eq("game_id", partidaID);
+		Document gameBuscado = collectionGames.find(filterIdPartida).first();
+       // System.out.println("Usuario: " + gameBuscado.toJson());
+        String sCadena = gameBuscado.toJson();
+        String idUsuario1 = sCadena.substring(95,96);
+        int idUsuario1INT = Integer.parseInt(idUsuario1);
+       // System.out.println(idUsuario1INT);
+        String idUsuario2 = sCadena.substring(113,114);
+        int idUsuario2INT = Integer.parseInt(idUsuario2);
+       // System.out.println(idUsuario2INT);
+        int [] idsUsuarios = new int[] {idUsuario1INT,idUsuario2INT};
+        return idsUsuarios;
+        //No puedo creer que esta pirateria funcione
+	}
+	
+	public static String cerrarPartida(int partidaID){
+		Bson filterIdPartida = eq("game_id", partidaID);
+		int [] idsUsuarios = obtenerIdsUsuariosGame(partidaID);
+		Bson filterPuntajePlayer1 = eq("puntajePlayer1", 100);
+		Bson filterPuntajePlayer2 = eq("puntajePlayer2", 100);
+		if(collectionGames.find(Filters.and(filterPuntajePlayer1, filterIdPartida)) != null) {
+			int [] actualizarINT = new int[] {partidaID, idsUsuarios[0]};
+			setearGanador(actualizarINT);	//le pasa el id del ganador a setearGanador
+		}else if(collectionGames.find(Filters.and(filterPuntajePlayer2, filterIdPartida)) != null) {
+			int [] actualizarINT = new int[] {partidaID, idsUsuarios[1]}; //basicamente es el id de la partida y el usuario que gano
+			setearGanador(actualizarINT);	//le pasa el id del ganador a setearGanador
+		}
+		return "Done";
+	}
 	
 	public static String setearGanador(int[] idPartida) {
-		int idPart = idPartida[0];
-		int ganador = idPartida[1];
+		int idPart = idPartida[0];	//id de la partida
+		int ganador = idPartida[1];		//id del ganador
+		int[] usuarioGanadorConElo = new int[] {idPartida[1],100};
+		actualizarElo(usuarioGanadorConElo);
 		Bson filter = eq("game_id", idPart);
 		Bson update = set("winner", ganador);
 		collectionGames.findOneAndUpdate(filter, update);
