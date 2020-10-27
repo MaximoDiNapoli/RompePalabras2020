@@ -44,20 +44,37 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
 	public static void main(String[] args) {
-		
+		cerrarPartida(1);
 	}
 	
 	public static int[] obtenerIdsUsuariosGame(int partidaID) {
 		Bson filterIdPartida = eq("game_id", partidaID);
 		Document gameBuscado = collectionGames.find(filterIdPartida).first();
-       // System.out.println("Usuario: " + gameBuscado.toJson());
+        System.out.println("Usuario: " + gameBuscado.toJson());
         String sCadena = gameBuscado.toJson();
-        String idUsuario1 = sCadena.substring(95,96);
+        int a = sCadena.lastIndexOf("player1_id") + 14;
+        int a2 = sCadena.lastIndexOf("player2_id") + 14;
+        String idUsuario1 = "";
+        String idUsuario2 = "";
+        for(int i = a;i < 200;i++){
+	        	if(sCadena.charAt(i) != ',') {
+	        		idUsuario1 = idUsuario1 + sCadena.charAt(i);
+	        	}
+	        	else {
+		        	i = 300;
+	        	}
+        }
+        for(int i = a2;i < 200;i++){
+        	if(sCadena.charAt(i) != ',') {
+        		idUsuario2 = idUsuario2 + sCadena.charAt(i);
+        	}
+        	else {
+	        	i = 300;
+        	}
+        }
         int idUsuario1INT = Integer.parseInt(idUsuario1);
-       // System.out.println(idUsuario1INT);
-        String idUsuario2 = sCadena.substring(113,114);
         int idUsuario2INT = Integer.parseInt(idUsuario2);
-       // System.out.println(idUsuario2INT);
+        System.out.println("a :  " + idUsuario1INT + "   b  :   " + idUsuario2INT);
         int [] idsUsuarios = new int[] {idUsuario1INT,idUsuario2INT};
         return idsUsuarios;
         //No puedo creer que esta pirateria funcione
