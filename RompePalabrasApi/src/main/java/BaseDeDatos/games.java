@@ -15,7 +15,7 @@ public class games {
 	
 	
 	public games(){
-        this.game_id = 1;  
+        this.game_id = ultimoIDGames();  
         this.player1_id = 1;
         this.player2_id = 2;
         this.puntajePlayer1 = 20; 
@@ -23,6 +23,11 @@ public class games {
 	}
 	
 	
+	private int ultimoIDGames() {
+		return BaseDeDatos.conexionMongoAtlas.ultimoIDGames();
+	}
+
+
 	public games(int game_id, int winner, int player1_id, int player2_id, int puntajePlayer1, int puntajePlayer2) {
 		this.setGame_id(game_id);
 		this.setPlayer2_id(player2_id);

@@ -26,7 +26,7 @@ public class Usuarios {
         this.friends.addElement(1);
         this.username = "elpepe";
         this.email = "elpepe"; 
-        this.elo = 0; 
+        this.elo = 1000; 
 	}
 	
 	private int ultimoIDUsuario() {
