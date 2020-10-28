@@ -21,7 +21,7 @@ public class Usuarios {
 	private int elo;
 	
 	public Usuarios(){
-        this.id = 4;  
+        this.id = ultimoIDUsuario();  
         this.friends = new Vector(0);
         this.friends.addElement(1);
         this.username = "elpepe";
@@ -29,6 +29,10 @@ public class Usuarios {
         this.elo = 0; 
 	}
 	
+	private int ultimoIDUsuario() {
+		return BaseDeDatos.conexionMongoAtlas.ultimoIDUsuario();
+	}
+
 	public Usuarios(int id, String username, Vector friends, String email, int elo) {
 		this.setId(id);
 		this.setUsername(username);

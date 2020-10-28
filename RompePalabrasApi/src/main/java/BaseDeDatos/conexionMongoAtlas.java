@@ -44,8 +44,23 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
 	public static void main(String[] args) {
-		cerrarPartida(1);
+		ultimoIDUsuario();
+        }
+           
+            
+        
+	public static int ultimoIDUsuario(){
+		int maxId = 1;
+        for(int i = 1;i < collectionUsuarios.count();i++){
+    		Bson filter = eq("id", i);
+    		if(collectionUsuarios.find(filter) != null) {
+    			maxId = maxId + 1;
+    		}
+        }
+        System.out.println(maxId);
+        return maxId;
 	}
+	
 	
 	public static int[] obtenerIdsUsuariosGame(int partidaID) {
 		Bson filterIdPartida = eq("game_id", partidaID);
