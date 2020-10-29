@@ -16,7 +16,7 @@ public class Usuarios {
 	private ObjectId Oid;
 	private int id;
 	private String username;
-	private Vector friends;
+	Vector friends;
 	private String email;
 	private int elo;
 	

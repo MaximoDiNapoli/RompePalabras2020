@@ -23,6 +23,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.ReturnDocument;
 import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -43,6 +44,22 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionUsuarios = RompePalabras.getCollection("usuarios");
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
+    
+    public static void main(String[] args){
+    	agregarFriend(1,2);
+    }
+    
+    
+    public static String agregarFriend(int idUsuario1, int idUsuario2) {
+    	Bson filter1 = eq("id", idUsuario1);
+    	Bson filter2 = eq("id", idUsuario2);
+    	collectionUsuarios.findOneAndUpdate(filter1, Updates.push("friends", idUsuario2));
+    	collectionUsuarios.findOneAndUpdate(filter2, Updates.push("friends", idUsuario1));
+    	return "a";
+    }
+ 
+    
+    
 	public static int ultimoIDUsuario(){
 		int maxId = 1;
         for(int i = 1;i < collectionUsuarios.count();i++){
