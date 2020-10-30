@@ -23,6 +23,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.ReturnDocument;
 import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -43,8 +44,65 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionUsuarios = RompePalabras.getCollection("usuarios");
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
-	public static void main(String[] args) {
-		cerrarPartida(1);
+    
+    public static void main(String[] args){
+    	cerrarPartida(2);
+    }
+    
+    public static int verGanador(int idPartida) {
+    	
+    	Bson filter = eq("game_id", idPartida);
+		Document gameBuscado = collectionGames.find(filter).first();
+        System.out.println("Usuario: " + gameBuscado.toJson());
+        String sCadena = gameBuscado.toJson();
+        System.out.println(sCadena);
+        int a = sCadena.lastIndexOf("winner") + 10;
+        String ganadorString = "";
+        for(int i = a;i < 200;i++){
+	        	if(sCadena.charAt(i) != ',') {
+	        		ganadorString = ganadorString + sCadena.charAt(i);
+	        	}
+	        	else {
+	        		System.out.println(ganadorString);
+		        	i = 300;
+	        	}
+        }
+        int winner = Integer.parseInt(ganadorString);
+		System.out.println(winner);
+    	return winner;
+    	
+    }
+    
+    public static String agregarFriend(int idUsuario1, int idUsuario2) {
+    	Bson filter1 = eq("id", idUsuario1);
+    	Bson filter2 = eq("id", idUsuario2);
+    	collectionUsuarios.findOneAndUpdate(filter1, Updates.push("friends", idUsuario2));
+    	collectionUsuarios.findOneAndUpdate(filter2, Updates.push("friends", idUsuario1));
+    	return "Nuevos amigos!";
+    }
+ 
+	public static int ultimoIDUsuario(){
+		int maxId = 1;
+        for(int i = 1;i < collectionUsuarios.count();i++){
+    		Bson filter = eq("id", i);
+    		if(collectionUsuarios.find(filter) != null) {
+    			maxId = maxId + 1;
+    		}
+        }
+        System.out.println(maxId);
+        return maxId;
+	}
+	
+	public static int ultimoIDGames(){
+		int maxId = 2;
+        for(int i = 1;i < collectionGames.count();i++){
+    		Bson filter = eq("game_id", i);
+    		if(collectionGames.find(filter) != null) {
+    			maxId = maxId + 1;
+    		}
+        }
+        System.out.println(maxId);
+        return maxId;
 	}
 	
 	public static int[] obtenerIdsUsuariosGame(int partidaID) {
@@ -79,6 +137,7 @@ public class conexionMongoAtlas {
         return idsUsuarios;
         //No puedo creer que esta pirateria funcione
 	}
+
 	
 	public static String cerrarPartida(int partidaID){
 		Bson filterIdPartida = eq("game_id", partidaID);

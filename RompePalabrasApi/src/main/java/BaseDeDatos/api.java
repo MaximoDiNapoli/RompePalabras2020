@@ -14,6 +14,15 @@ public class api {
 		
 		Gson gson = new Gson();
 		
+		
+		
+		get("/", (req, res) -> {
+			res.type("application/json");
+			return "Bienvenido ";
+		}, gson ::toJson);
+		
+		
+		
 		//Agregar usuario(recibe un json de un usuario y lo inserta)
 		post("/AgregarUsuario", (req, res) -> {
 				res.type("application/json");
