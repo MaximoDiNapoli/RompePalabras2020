@@ -16,10 +16,10 @@ public class games {
 	
 	public games(){
         this.game_id = ultimoIDGames();  
-        this.player1_id = 1;
-        this.player2_id = 2;
-        this.puntajePlayer1 = 20; 
-        this.puntajePlayer2 = 10; 
+        this.player1_id = 0;
+        this.player2_id = 0;
+        this.puntajePlayer1 = 0; 
+        this.puntajePlayer2 = 0; 
 	}
 	
 	
