@@ -1,24 +1,18 @@
 <?php
-    session_start();
-    $nombre=$_POST["nombre"];
-    $edad=$_POST["edad"];
-    $pais=$_POST["pais"];
-    $ciudad=$_POST["ciudad"];
-    $contra=$_POST["passwor"];
-    $conexion=mysqli_connect("localhost","root","alumnoipm","RP");
-    if (!$conexion) {
-        die('Error de conexión: ' . mysqli_connect_error());
-    }
-    $var = mysqli_query($conexion,"SELECT NombreUsuario FROM Usuarios;")or die("Error: ".mysqli_error($conexion));
-    while($nombre == $var){
-        echo "Nombre ocupado, ingrese otro nombre";
-        $nombre=$_POST["nombre"];
-    }
-    mysqli_query($conexion,"INSERT INTO CarritoDeCompra(idCarrito,CantProductos,PrecioTotalProductos) values(null,0,0);")or die("Error: ".mysqli_error($conexion));
-    $Carrito=mysqli_query($conexion,"SELECT max(idCarrito) as nroCarrito FROM CarritoDeCompra;")or die("Error: ".mysqli_error($conexion));
-    $fila = mysqli_fetch_assoc($Carrito);
-    $id = $fila['nroCarrito'];
-    mysqli_query($conexion,"INSERT INTO Usuarios(idUsuarios, NombreUsuario, ContrasenaUsuario, EdadUsuario, CiudadUsuario, PaisUsuario, CarritoDeCompra_idCarrito) 
-    values(null,'$nombre','$contra','$edad','$pais','$ciudad','$id');")or die("Error: ".mysqli_error($conexion));
-    header('Location: RompePalabras.html');
+$nombre=$_POST["user"];
+$mail=$_POST["email"];
+echo $mail;
+echo $nombre;
+$data = [
+    'username' => $nombre,
+    'email' => $mail
+];
+echo "entro data";
+$url = "http://127.0.0.1:4567";
+$curl = curl_init($url);
+echo "inicio curl";
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+echo "todo correcto";
 ?>
