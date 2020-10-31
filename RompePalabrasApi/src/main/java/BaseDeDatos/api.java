@@ -21,7 +21,19 @@ public class api {
 			return "Bienvenido ";
 		}, gson ::toJson);
 		
-		
+		//suma puntos a un jugador en una partida
+		post("/SumarPuntos", (req, res) -> {
+			res.type("application/json");
+			int[] a = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.agregarPuntosEnPartida(a);
+	}, gson ::toJson);
+
+			//quita puntos a un jugador en una partida
+		post("/SumarPuntos", (req, res) -> {
+			res.type("application/json");
+			int[] a = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.quitarPuntosEnPartida(a);
+	}, gson ::toJson);
 		
 		//Agregar usuario(recibe un json de un usuario y lo inserta)
 		post("/AgregarUsuario", (req, res) -> {

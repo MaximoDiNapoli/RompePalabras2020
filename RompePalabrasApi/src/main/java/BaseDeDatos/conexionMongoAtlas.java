@@ -49,6 +49,36 @@ public class conexionMongoAtlas {
     	cerrarPartida(2);
     }
     
+    
+    public static String agregarPuntosEnPartida(int[] idUsuarioIdgame) {
+    	int idgame = idUsuarioIdgame[0];
+    	int idUsuario = idUsuarioIdgame[1];
+    	Bson filterG = eq("game_id", idgame);
+    	Bson filter1 = eq("player1_id", idUsuario);
+    	Bson filter2 = eq("player2_id", idUsuario);
+    	Bson update1 = inc("puntajePlayer1", 10);
+    	Bson update2 = inc("puntajePlayer2", 10);
+    	collectionGames.findOneAndUpdate(Filters.and(filterG, filter1), update1);
+    	collectionGames.findOneAndUpdate(Filters.and(filterG, filter2), update2);
+    	return "puntos agregados";
+    }
+    
+    
+    public static String quitarPuntosEnPartida(int[] idUsuarioIdgame) {
+    	int idgame = idUsuarioIdgame[0];
+    	int idUsuario = idUsuarioIdgame[1];
+    	Bson filterG = eq("game_id", idgame);
+    	Bson filter1 = eq("player1_id", idUsuario);
+    	Bson filter2 = eq("player2_id", idUsuario);
+    	Bson update1 = inc("puntajePlayer1", -10);
+    	Bson update2 = inc("puntajePlayer2", -10);
+    	collectionGames.findOneAndUpdate(Filters.and(filterG, filter1), update1);
+    	collectionGames.findOneAndUpdate(Filters.and(filterG, filter2), update2);
+    	return "puntos quitados";
+    }
+    
+    
+    
     public static int verGanador(int idPartida) {
     	
     	Bson filter = eq("game_id", idPartida);
