@@ -49,6 +49,20 @@ public class conexionMongoAtlas {
     	verUsuarioMasGrande();
     }
     
+    
+    public static boolean comprobarExistenciaDeUnUsuario(String nombre, String email) {
+    	Bson filter = eq("username", nombre);
+    	Bson filter2 = eq("email", email);
+    	boolean a;
+    	if(collectionUsuarios.find(Filters.and(filter, filter2)) != null){
+    		a = true;
+    	}
+    	else {
+    		a = false;
+    	}
+		return a;
+    }
+    
     public static String verUsuarioMasGrande() {
     	int EloMasGrande = 0;
     	for(int i = 0;i < collectionUsuarios.count(); i++){

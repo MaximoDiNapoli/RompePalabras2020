@@ -18,6 +18,13 @@ public class api {
 			res.type("application/json");
 			return "Bienvenido ";
 		}, gson ::toJson);
+
+		post("/comprobarExistenciaDeUnUsuario", (req, res) -> {
+			res.type("application/json");
+			String nombre = gson.fromJson(req.body(), String.class);
+			String email = gson.fromJson(req.body(), String.class);
+			return BaseDeDatos.conexionMongoAtlas.comprobarExistenciaDeUnUsuario(nombre, email);
+	}, gson ::toJson);
 		
 		post("/verPuntosDeUnUsuario", (req, res) -> {
 			res.type("application/json");
