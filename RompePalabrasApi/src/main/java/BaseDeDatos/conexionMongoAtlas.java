@@ -54,7 +54,7 @@ public class conexionMongoAtlas {
     	Bson filter = eq("username", nombre);
     	Bson filter2 = eq("email", email);
     	boolean a;
-    	if(collectionUsuarios.find(Filters.and(filter, filter2)) != null){
+    	if(collectionUsuarios.find(Filters.and(filter, filter2)).first() != null){
     		a = true;
     	}
     	else {
