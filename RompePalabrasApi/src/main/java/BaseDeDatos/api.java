@@ -14,12 +14,21 @@ public class api {
 		
 		Gson gson = new Gson();
 		
-		
-		
 		get("/", (req, res) -> {
 			res.type("application/json");
 			return "Bienvenido ";
 		}, gson ::toJson);
+		
+		post("/verPuntosDeUnUsuario", (req, res) -> {
+			res.type("application/json");
+			int[] a = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.verPuntosDeUnUsuario(a);
+	}, gson ::toJson);
+		
+		get("/MejorUsuario", (req, res) -> {
+			res.type("application/json");
+			return BaseDeDatos.conexionMongoAtlas.verUsuarioMasGrande();
+	}, gson ::toJson);
 		
 		//suma puntos a un jugador en una partida
 		post("/SumarPuntos", (req, res) -> {
