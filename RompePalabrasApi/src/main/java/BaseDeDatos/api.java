@@ -21,9 +21,8 @@ public class api {
 
 		post("/comprobarExistenciaDeUnUsuario", (req, res) -> {
 			res.type("application/json");
-			String nombre = gson.fromJson(req.body(), String.class);
-			String email = gson.fromJson(req.body(), String.class);
-			return BaseDeDatos.conexionMongoAtlas.comprobarExistenciaDeUnUsuario(nombre, email);
+			Usuarios usuario = gson.fromJson(req.body(), Usuarios.class);
+			return BaseDeDatos.conexionMongoAtlas.comprobarExistenciaDeUnUsuario(usuario.getUsername(), usuario.getEmail());
 	}, gson ::toJson);
 		
 		post("/verPuntosDeUnUsuario", (req, res) -> {
