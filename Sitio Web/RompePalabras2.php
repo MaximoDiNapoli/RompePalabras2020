@@ -24,16 +24,16 @@ $nombre=$_SESSION['usernama'];
         <div class="container-fluid">
             <div id='Pestañas' class="row">
                       <div class="col">
-                      <a class="nav-link" href="RompePalabras.html">Juego</a>
+                      <a class="nav-link" href="RompePalabras.php">Juego</a>
                       </div>
                       <div class="col">
-                        <a class="nav-link" href="RompePalabras2.html">Como Jugar</a>
+                        <a class="nav-link" href="RompePalabras2.php">Como Jugar</a>
                       </div>
                       <div class="col">
-                        <a class="nav-link" href="RompePalabras3.html">Leaderboard</a>
+                        <a class="nav-link" href="RompePalabras3.php">Leaderboard</a>
                       </div>
                       <div class="col">
-                        <a class="nav-link" href="RompePalabras4.html">PMF</a>
+                        <a class="nav-link" href="RompePalabras4.php">PMF</a>
                       </div>
                       <div class="col">
                         <?php

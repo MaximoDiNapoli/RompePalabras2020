@@ -106,7 +106,8 @@ public class conexionMongoAtlas {
 	        	}
         }
 		System.out.println(MejorusuarioNombre);
-    	return ("el mejor usuario es:" + MejorusuarioNombre  + "con la increible cantidad de" + EloMasGrande + "de elo!");
+		String mensaje = "El mejor usuario es: " + MejorusuarioNombre  + " con la increible cantidad de " + EloMasGrande + " de ELO!";
+    	return (mensaje);
     }
         	
     public static int verPuntosDeUnUsuario(int[] Arrr) {

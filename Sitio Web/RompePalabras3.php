@@ -1,6 +1,11 @@
 <?php
 session_start();
 $nombre=$_SESSION['usernama'];
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, "http://127.0.0.1:4567/MejorUsuario");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($curl);
+curl_close($curl);
 ?>
 <html>
     <head>
@@ -31,16 +36,16 @@ $nombre=$_SESSION['usernama'];
       <div class="container-fluid">
         <div id='Pestañas' class="row">
                   <div class="col">
-                  <a class="nav-link" href="RompePalabras.html">Juego</a>
+                  <a class="nav-link" href="RompePalabras.php">Juego</a>
                   </div>
                   <div class="col">
-                    <a class="nav-link" href="RompePalabras2.html">Como Jugar</a>
+                    <a class="nav-link" href="RompePalabras2.php">Como Jugar</a>
                   </div>
                   <div class="col">
-                    <a class="nav-link" href="RompePalabras3.html">Leaderboard</a>
+                    <a class="nav-link" href="RompePalabras3.php">Leaderboard</a>
                   </div>
                   <div class="col">
-                    <a class="nav-link" href="RompePalabras4.html">PMF</a>
+                    <a class="nav-link" href="RompePalabras4.php">PMF</a>
                   </div>
                   <div class="col">
                     <?php
@@ -50,54 +55,11 @@ $nombre=$_SESSION['usernama'];
                 </ul>
         </div>
         <div id="Leaderboard" class="row">
-            <div class=".overflow-auto" id="section1">
-              <label>Tabla general</label>
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Usuario</th>
-                    <th>Calificación</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Jugador Epsilon</td>
-                    <td>5000</td>
-                  </tr>
-                  <tr>
-                    <td>Jugador Epsilon</td>
-                    <td>5000</td>
-                  </tr>
-                  <tr>
-                    <td>Jugador Epsilon</td>
-                    <td>5000</td>
-                  </tr>
-                  <tr>
-                    <td>Jugador Epsilon</td>
-                    <td>5000</td>
-                  </tr>
-                  <tr>
-                    <td>Jugador Epsilon</td>
-                    <td>5000</td>
-                  </tr>
-                  <tr>
-                    <td>Jugador Epsilon</td>
-                    <td>5000</td>
-                  </tr>
-                  <tr>
-                    <td>Jugador Epsilon</td>
-                    <td>5000</td>
-                  </tr>
-                  <tr>
-                    <td>Jugador Epsilon</td>
-                    <td>5000</td>
-                  </tr>
-                  <tr>
-                    <td>Jugador Epsilon</td>
-                    <td>5000</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div id="section1">
+              <label>Top Usuario del Mundo!</label>
+            <?php
+            echo "<label>".$response."</label>";
+            ?>
             </div>
           </div>
           <div id='login' class="row">
