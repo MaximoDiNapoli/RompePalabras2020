@@ -19,4 +19,3 @@ curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 $response = curl_exec($curl);
 curl_close($curl);
 header("Location: RompePalabras.html");
-?>

@@ -46,7 +46,141 @@ public class conexionMongoAtlas {
 
     
     public static void main(String[] args){
-    	cerrarPartida(2);
+    	verUsuarioMasGrande();
+    }
+    
+    
+    public static boolean comprobarExistenciaDeUnUsuario(String nombre, String email) {
+    	Bson filter = eq("username", nombre);
+    	Bson filter2 = eq("email", email);
+    	boolean a;
+    	if(collectionUsuarios.find(Filters.and(filter, filter2)).first() != null){
+    		a = true;
+    	}
+    	else {
+    		a = false;
+    	}
+		return a;
+    }
+    
+    public static String verUsuarioMasGrande() {
+    	int EloMasGrande = 0;
+    	for(int i = 0;i < collectionUsuarios.count(); i++){
+    		Bson filter = eq("id", i);
+        	if(collectionUsuarios.find(filter).first() != null) {
+        		System.out.println("dea1");
+        		Document usuario = collectionUsuarios.find(filter).first();
+        		String usuarioString = usuario.toJson();
+        		System.out.println(usuarioString);
+                int a = usuarioString.lastIndexOf("elo") + 7;
+                String eloString = "";
+                for(int j = a;j < 200;j++){
+        	        	if(usuarioString.charAt(j) != ' ') {
+        	        		eloString = eloString + usuarioString.charAt(j);
+        	        	}
+        	        	else {
+        	        		System.out.println(eloString);
+        		        	j = 300;
+        	        	}
+                }
+                int PuntajeUsuario1 = Integer.parseInt(eloString);
+                if(PuntajeUsuario1 > EloMasGrande) {
+                	EloMasGrande = PuntajeUsuario1;
+                }
+        		System.out.println(PuntajeUsuario1);
+        	}
+    		System.out.println(EloMasGrande);
+    	}
+		Bson filter2 = eq("elo", EloMasGrande);
+		Document Mejorusuario = collectionUsuarios.find(filter2).first();
+		String MejorusuarioString = Mejorusuario.toJson();
+        int a = MejorusuarioString.lastIndexOf("username") + 12;
+        String MejorusuarioNombre = "";
+        for(int j = a+1;j < 200;j++){
+	        	if(MejorusuarioString.charAt(j) != '"') {
+	        		MejorusuarioNombre = MejorusuarioNombre + MejorusuarioString.charAt(j);
+	        	}
+	        	else {
+	        		System.out.println(MejorusuarioNombre);
+		        	j = 300;
+	        	}
+        }
+		System.out.println(MejorusuarioNombre);
+    	return ("el mejor usuario es:" + MejorusuarioNombre  + "con la increible cantidad de" + EloMasGrande + "de elo!");
+    }
+        	
+    public static int verPuntosDeUnUsuario(int[] Arrr) {
+    	int idgame = Arrr[0];
+    	int idUsuario = Arrr[1];
+    	Bson filterG = eq("game_id", idgame);
+    	Bson filter1 = eq("player1_id", idUsuario);
+    	Bson filter2 = eq("player2_id", idUsuario);
+    	if(collectionGames.find(Filters.and(filterG, filter1)).first() != null) {
+    		System.out.println("dea1");
+    		Document Game = collectionGames.find(Filters.and(filterG, filter1)).first();
+    		String GameString = Game.toJson();
+            int a = GameString.lastIndexOf("puntajePlayer1") + 18;
+            String ganadorString = "";
+            for(int i = a;i < 200;i++){
+    	        	if(GameString.charAt(i) != ',') {
+    	        		ganadorString = ganadorString + GameString.charAt(i);
+    	        	}
+    	        	else {
+    	        		System.out.println(ganadorString);
+    		        	i = 300;
+    	        	}
+            }
+            int PuntajeUsuario1 = Integer.parseInt(ganadorString);
+    		System.out.println(PuntajeUsuario1);
+        	return PuntajeUsuario1;
+    	}
+    	
+    	if(collectionGames.find(Filters.and(filterG, filter2)).first() != null) {
+    		Document Game = collectionGames.find(Filters.and(filterG, filter2)).first();
+    		String GameString = Game.toJson();
+            int a = GameString.lastIndexOf("puntajePlayer2") + 18;
+            String ganadorString = "";
+            for(int i = a;i < 200;i++){
+    	        	if(GameString.charAt(i) != ' ') {
+    	        		ganadorString = ganadorString + GameString.charAt(i);
+    	        	}
+    	        	else {
+    	        		System.out.println(ganadorString);
+    		        	i = 300;
+    	        	}
+            }
+            int PuntajeUsuario2 = Integer.parseInt(ganadorString);
+    		System.out.println(PuntajeUsuario2);
+        	return PuntajeUsuario2;
+    	}
+    	
+    	return 0;
+    }
+    
+    public static String agregarPuntosEnPartida(int[] idUsuarioIdgame) {
+    	int idgame = idUsuarioIdgame[0];
+    	int idUsuario = idUsuarioIdgame[1];
+    	Bson filterG = eq("game_id", idgame);
+    	Bson filter1 = eq("player1_id", idUsuario);
+    	Bson filter2 = eq("player2_id", idUsuario);
+    	Bson update1 = inc("puntajePlayer1", 10);
+    	Bson update2 = inc("puntajePlayer2", 10);
+    	collectionGames.findOneAndUpdate(Filters.and(filterG, filter1), update1);
+    	collectionGames.findOneAndUpdate(Filters.and(filterG, filter2), update2);
+    	return "puntos agregados";
+    }
+    
+    public static String quitarPuntosEnPartida(int[] idUsuarioIdgame) {
+    	int idgame = idUsuarioIdgame[0];
+    	int idUsuario = idUsuarioIdgame[1];
+    	Bson filterG = eq("game_id", idgame);
+    	Bson filter1 = eq("player1_id", idUsuario);
+    	Bson filter2 = eq("player2_id", idUsuario);
+    	Bson update1 = inc("puntajePlayer1", -10);
+    	Bson update2 = inc("puntajePlayer2", -10);
+    	collectionGames.findOneAndUpdate(Filters.and(filterG, filter1), update1);
+    	collectionGames.findOneAndUpdate(Filters.and(filterG, filter2), update2);
+    	return "puntos quitados";
     }
     
     public static int verGanador(int idPartida) {
@@ -138,7 +272,6 @@ public class conexionMongoAtlas {
         //No puedo creer que esta pirateria funcione
 	}
 
-	
 	public static String cerrarPartida(int partidaID){
 		Bson filterIdPartida = eq("game_id", partidaID);
 		int [] idsUsuarios = obtenerIdsUsuariosGame(partidaID);

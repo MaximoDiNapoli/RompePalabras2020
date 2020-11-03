@@ -14,14 +14,42 @@ public class api {
 		
 		Gson gson = new Gson();
 		
-		
-		
 		get("/", (req, res) -> {
 			res.type("application/json");
 			return "Bienvenido ";
 		}, gson ::toJson);
+
+		post("/comprobarExistenciaDeUnUsuario", (req, res) -> {
+			res.type("application/json");
+			String nombre = gson.fromJson(req.body(), String.class);
+			String email = gson.fromJson(req.body(), String.class);
+			return BaseDeDatos.conexionMongoAtlas.comprobarExistenciaDeUnUsuario(nombre, email);
+	}, gson ::toJson);
 		
+		post("/verPuntosDeUnUsuario", (req, res) -> {
+			res.type("application/json");
+			int[] a = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.verPuntosDeUnUsuario(a);
+	}, gson ::toJson);
 		
+		get("/MejorUsuario", (req, res) -> {
+			res.type("application/json");
+			return BaseDeDatos.conexionMongoAtlas.verUsuarioMasGrande();
+	}, gson ::toJson);
+		
+		//suma puntos a un jugador en una partida
+		post("/SumarPuntos", (req, res) -> {
+			res.type("application/json");
+			int[] a = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.agregarPuntosEnPartida(a);
+	}, gson ::toJson);
+
+			//quita puntos a un jugador en una partida
+		post("/SumarPuntos", (req, res) -> {
+			res.type("application/json");
+			int[] a = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.quitarPuntosEnPartida(a);
+	}, gson ::toJson);
 		
 		//Agregar usuario(recibe un json de un usuario y lo inserta)
 		post("/AgregarUsuario", (req, res) -> {
