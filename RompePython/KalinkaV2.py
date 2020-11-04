@@ -3,10 +3,29 @@ from tkinter import scrolledtext
 import random
 from tkinter import messagebox
 
+import requests
+from getpass import getpass
+
+
+#r = requests.post("http://127.0.0.1:4567/AgregarUsuario", params = {
+ #       "username": "Elpibe",
+  #      "email": "ElPibe@gmail.com"
+   # }) 
+
+#url = "http://127.0.0.1:4567/AgregarUsuario"
+#cabecera1 = {'Content-type': 'application/json'}
+#datos = '{"username": "ElPibe", "email": "ElPibe@gmail.com" }'
+#solicitud = requests.post(url, headers = cabecera1, data = datos)
+#if solicitud.status_code == 200:
+#    print(solicitud.text)
+
+
+
 class App():
     def __init__(self, root):
         self.root = root
-        self.nombrus = "SegismundoGoodKing41"
+        self.nombrus = ""
+        self.email = ""
         self.Przyjaciele = ["FriedrichPrussen74", "CarolusAdolphusSweedenForTheWin", "MustafaPashaKebab67"]
         self.nombrianni = "Nombre:" + self.nombrus
         self.setPreguntas = [0, 1, 2, 3, 4]
@@ -26,17 +45,22 @@ class App():
         self.img = PhotoImage(file="PalabraRota.png")      
         self.canvas.create_image(30,30, anchor=NW, image=self.img)
         self.text3 = Text(self.pantallaLogin, width = 35, height = 1)
+        self.text4 = Text(self.pantallaLogin, width = 35, height = 1)
         self.labelu4 = Label(self.pantallaLogin, text="Nombre:")
+        self.text4.insert(INSERT, "")
+        self.labelu5 = Label(self.pantallaLogin, text="Email:")
         self.text3.insert(INSERT, "")
         self.butony = Button(self.pantallaLogin, text="Ingresar", width = 20, command=self.VerificarCuenta)
         self.butony4 = Button(self.pantallaLogin, text="Salir", width = 20, command=self.SalirDeLaApp)
         self.canvas.pack()  
         self.labelu4.pack()    
         self.text3.pack()
+        self.labelu5.pack()
+        self.text4.pack()
         self.butony.pack()
         self.butony4.pack()
         self.pantallaLogin.pack()
-
+        self.labeluR = Label(self.pantallaLogin, text="Usuario no encontrado, por favor reintentelo o cree una cuenta")
 
 
     def menu(self):
@@ -99,16 +123,25 @@ class App():
         self.root.destroy()
         
     def VerificarCuenta(self):
-        self.nombri = self.text3.get("1.0", "end-1c")
-        if (self.nombri == self.nombrus):
-            self.pantallaLogin.destroy()
-            self.menu()
-            self.pantallaPrincipal.pack()
-            pass
-        else:
-            self.labeluR = Label(self.pantallaLogin, text="Usuario no encontrado")
-            self.labeluR.pack()
-            pass
+        self.labeluR.destroy()
+        url = "http://127.0.0.1:4567/comprobarExistenciaDeUnUsuario"
+        self.nombrus = self.text3.get("1.0", "end-1c")
+        self.email = self.text4.get("1.0", "end-1c")
+        cabecera1 = {'Content-type': 'application/json'}
+        datos = '{"username": %s, "email": %s }' % (self.nombrus, self.email)
+        solicitud = requests.post(url, headers = cabecera1, data = datos)
+        if solicitud.status_code == 200:
+            print(solicitud.text)
+            if solicitud.text == "true":
+                self.pantallaLogin.destroy()
+                self.menu()
+                self.pantallaPrincipal.pack()
+                pass
+            else:
+                self.labeluR = Label(self.pantallaLogin, text="Usuario no encontrado, por favor reintentelo o cree una cuenta")
+                self.labeluR.pack()
+                
+                pass
         
 
         
