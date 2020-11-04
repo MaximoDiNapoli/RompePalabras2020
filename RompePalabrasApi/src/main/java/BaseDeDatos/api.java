@@ -2,6 +2,9 @@ package BaseDeDatos;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+
+import javax.swing.text.Document;
+
 import com.google.gson.Gson;
 
 
@@ -19,6 +22,13 @@ public class api {
 			return "Bienvenido ";
 		}, gson ::toJson);
 
+	
+		post("/buscarIdPorDocument", (req, res) -> {
+			res.type("application/json");
+			String usuario = gson.fromJson(req.body(), String.class);
+			return BaseDeDatos.conexionMongoAtlas.buscarIdPorDocument(usuario);
+	}, gson ::toJson);
+		
 		post("/comprobarExistenciaDeUnUsuario", (req, res) -> {
 			res.type("application/json");
 			Usuarios usuario = gson.fromJson(req.body(), Usuarios.class);
@@ -81,13 +91,16 @@ public class api {
 		}, gson ::toJson);
 		
 		
+		/*
+		 * 
 		//Usuario Especifico(recibe un id y te tira los datos del usuario)
 		post("/UsuarioEspecifico", (req, res) -> {
 			res.type("application/json");
-			int idABuscar = gson.fromJson(req.body(), int.class);
-	        return BaseDeDatos.conexionMongoAtlas.getUsuarioEspecifico(idABuscar);
+			String username = gson.fromJson(req.body(), String.class);
+	        return BaseDeDatos.conexionMongoAtlas.getUsuarioEspecifico(username);
 		}, gson ::toJson);
 		
+		*/
 		
 		//Game Especifico (recibe un id y te tira los datos del game)
 		post("/GameEspecifico", (req, res) -> {
