@@ -22,7 +22,14 @@ public class api {
 			return "Bienvenido ";
 		}, gson ::toJson);
 
-	
+		
+		post("/buscarIdPorDocument", (req, res) -> {
+			res.type("application/json");
+			String usuario = gson.fromJson(req.body(), String.class);
+			return BaseDeDatos.conexionMongoAtlas.buscarAmigosPorNombre(usuario);
+	}, gson ::toJson);
+		
+		
 		post("/buscarIdPorDocument", (req, res) -> {
 			res.type("application/json");
 			String usuario = gson.fromJson(req.body(), String.class);

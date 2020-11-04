@@ -44,38 +44,6 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionUsuarios = RompePalabras.getCollection("usuarios");
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
-    /*
-    public static void main(String[] args){
-    	Document usuarioBuscado = collectionUsuarios.find(new Document("username", "valkyrion2")).first();
-        System.out.println("Usuario: " + usuarioBuscado.toJson());
-        String sCadena = usuarioBuscado.toJson();
-        int a = sCadena.lastIndexOf("friend") + 12;
-        int k = 0;
-        String idUsuario = "";
-        for(int j = a;j  < 300; j++) {
-            idUsuario = "";
-            for(int i = a;i < 200;i++){
-    	        	if(sCadena.charAt(i) != ']') {
-    	        		idUsuario = idUsuario + sCadena.charAt(i);
-    	        		 if(Character.isDigit(idUsuario.charAt(i))) {
-        	        		 System.out.println(idUsuario); 
-    	        		 }
-    	        		 if(sCadena.charAt(i+1) == ']' && sCadena.charAt(i+2) == ',') {
-    	        			 j = 300;
-    	        		 }
-    	        	}
-    	        	else {
-    		        	i = 301;
-    	        	}
-            }
-            a = a + sCadena.length() +1; 
-   		 k++;
-           // int amigo = Integer.parseInt(idUsuario);
-            //System.out.println("a :  " + amigo );
-
-        }
-    }
-    */
     
     public static boolean comprobarExistenciaDeUnUsuario(String nombre, String email) {
     	Bson filter = eq("username", nombre);
@@ -370,7 +338,6 @@ public class conexionMongoAtlas {
 	    return "game Agregado";
 	}
 	
-	
     public static int buscarIdPorDocument(String nombreABuscar){
         Document usuarioBuscado = collectionUsuarios.find(new Document("username", nombreABuscar)).first();
         System.out.println("Usuario: " + usuarioBuscado.toJson());
@@ -389,28 +356,41 @@ public class conexionMongoAtlas {
         int idUsuarioINT = Integer.parseInt(idUsuario);
         System.out.println("a :  " + idUsuario );
         return idUsuarioINT;
-    }
-		
-    /*
-    public static int buscarAmigosPorDocument(Document usuarioBuscado){
+    }		
+
+    public static ArrayList<Integer> buscarAmigosPorNombre(String username){
+    	Document usuarioBuscado = collectionUsuarios.find(new Document("username", username)).first();
         System.out.println("Usuario: " + usuarioBuscado.toJson());
         String sCadena = usuarioBuscado.toJson();
-        int a = sCadena.lastIndexOf("friend") + 6;
-        String idUsuario = "";
-        for(int i = a;i < 200;i++){
-	        	if(sCadena.charAt(i) != ',') {
-	        		idUsuario = idUsuario + sCadena.charAt(i);
-	        	}
-	        	else {
-		        	i = 300;
-	        	}
+        int a = sCadena.lastIndexOf("friend") + 12;
+        int k = 0;
+        String idAmigo = "";
+        ArrayList<Integer> intAmigos = new ArrayList<Integer>();
+        for(int j = a;j  < 300; j++) {
+            idAmigo = "";
+            a = a + k;
+            boolean p = true;
+            for(int i = a;i < 200 && p == true;i++){
+    	        	if(sCadena.charAt(i) != ',') {
+    	        		idAmigo = idAmigo + sCadena.charAt(i);
+    	        	}
+    	        	if(sCadena.charAt(i+1) == ']') {
+    	        		p = false;
+    	        		j = 301;
+    	        	}
+    	        	if(sCadena.charAt(i+1) == ' ') {
+    	        		a++;
+    	        		p = false;
+    	        	}
+            }
+            a = a +1+ idAmigo.length();
+        	int idAmigoINT = Integer.parseInt(idAmigo);
+        	intAmigos.add(idAmigoINT);
         }
-        System.out.println(idUsuario );
-        int idUsuarioINT = Integer.parseInt(idUsuario);
-        System.out.println("a :  " + idUsuario );
-        return idUsuarioINT;
+        	System.out.println("Arraylist contains: " + intAmigos.toString()); 
+        	return intAmigos;
     }
-    */
+    
     
 	public static Document getGameEspecifico(int idAABuscar){
         Document gameBuscado = collectionGames.find(new Document("game_id", idAABuscar)).first();
