@@ -16,13 +16,12 @@ $data = [
 ];
 curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: text/plain'));
 curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+$_SESSION["usernama"] = $nombre;
 $response = curl_exec($curl);
-if($response){
-    $_SESSION["usernama"] = $nombre;
-    header("Location: RompePalabras.php");
-}
-else{
+if ($response == "false"):
     header("Location: LogIn.html");
-}
+else:
+    header("Location: RompePalabras.php");
+endif;
 curl_close($curl);
 ?>
