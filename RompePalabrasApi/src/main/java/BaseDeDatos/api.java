@@ -21,7 +21,12 @@ public class api {
 			res.type("application/json");
 			return "Bienvenido ";
 		}, gson ::toJson);
-
+		
+		post("/buscarNombrePorId", (req, res) -> {
+			res.type("application/json");
+			int usuarioId = gson.fromJson(req.body(), int.class);
+			return BaseDeDatos.conexionMongoAtlas.buscarNombrePorId(usuarioId);
+	}, gson ::toJson);
 		
 		post("/buscarIdPorDocument", (req, res) -> {
 			res.type("application/json");
@@ -30,10 +35,10 @@ public class api {
 	}, gson ::toJson);
 		
 		
-		post("/buscarIdPorDocument", (req, res) -> {
+		post("/buscarIdPorNombre", (req, res) -> {
 			res.type("application/json");
 			String usuario = gson.fromJson(req.body(), String.class);
-			return BaseDeDatos.conexionMongoAtlas.buscarIdPorDocument(usuario);
+			return BaseDeDatos.conexionMongoAtlas.buscarIdPorNombre(usuario);
 	}, gson ::toJson);
 		
 		post("/comprobarExistenciaDeUnUsuario", (req, res) -> {
