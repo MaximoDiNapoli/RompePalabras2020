@@ -2,9 +2,12 @@ package BaseDeDatos;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+
+import javax.swing.text.Document;
+
 import com.google.gson.Gson;
 
-//Version vieja de la api
+
 
 public class api {
 	
@@ -14,57 +17,104 @@ public class api {
 		
 		Gson gson = new Gson();
 		
-		//Agregar usuario
-		post("/AU", (req, res) -> {
+		get("/", (req, res) -> {
+			res.type("application/json");
+			return "Bienvenido ";
+		}, gson ::toJson);
+
+	
+		post("/buscarIdPorDocument", (req, res) -> {
+			res.type("application/json");
+			String usuario = gson.fromJson(req.body(), String.class);
+			return BaseDeDatos.conexionMongoAtlas.buscarIdPorDocument(usuario);
+	}, gson ::toJson);
+		
+		post("/comprobarExistenciaDeUnUsuario", (req, res) -> {
+			res.type("application/json");
+			Usuarios usuario = gson.fromJson(req.body(), Usuarios.class);
+			return BaseDeDatos.conexionMongoAtlas.comprobarExistenciaDeUnUsuario(usuario.getUsername(), usuario.getEmail());
+	}, gson ::toJson);
+		
+		post("/verPuntosDeUnUsuario", (req, res) -> {
+			res.type("application/json");
+			int[] a = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.verPuntosDeUnUsuario(a);
+	}, gson ::toJson);
+		
+		get("/MejorUsuario", (req, res) -> {
+			res.type("application/json");
+			return BaseDeDatos.conexionMongoAtlas.verUsuarioMasGrande();
+	}, gson ::toJson);
+		
+		//suma puntos a un jugador en una partida
+		post("/SumarPuntos", (req, res) -> {
+			res.type("application/json");
+			int[] a = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.agregarPuntosEnPartida(a);
+	}, gson ::toJson);
+
+			//quita puntos a un jugador en una partida
+		post("/SumarPuntos", (req, res) -> {
+			res.type("application/json");
+			int[] a = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.quitarPuntosEnPartida(a);
+	}, gson ::toJson);
+		
+		//Agregar usuario(recibe un json de un usuario y lo inserta)
+		post("/AgregarUsuario", (req, res) -> {
 				res.type("application/json");
 				Usuarios usuario = gson.fromJson(req.body(), Usuarios.class);
 				return BaseDeDatos.conexionMongoAtlas.insertarUsuario(usuario);
 		}, gson ::toJson);
 		
-		//agregar game
-		post("/AG", (req, res) -> {
+		//agregar game(recibe un json de un game y lo inserta)
+		post("/agregarGame", (req, res) -> {
 			res.type("application/json");
 			games game = gson.fromJson(req.body(), games.class);
 			return BaseDeDatos.conexionMongoAtlas.insertarGame(game);
-	}, gson ::toJson);
+		}, gson ::toJson);
+		
+		
+		//cierra la partida(solo funciona si uno de los 2 usuarios tiene 100 pt)
+		post("/cerrarPartida", (req, res) -> {
+			res.type("application/json");
+			int IdPartida = gson.fromJson(req.body(), int.class);
+			return BaseDeDatos.conexionMongoAtlas.cerrarPartida(IdPartida);
+		}, gson ::toJson);
+		
+		
+		//actualizar Elo(basicamente recibe 1: El id del jugador y 2:La cantidad de elo a sumar(puede ser negativa))
+		post("/actualizarElo", (req, res) -> {
+			res.type("application/json");
+			int[] pepe = gson.fromJson(req.body(), int[].class);
+			return BaseDeDatos.conexionMongoAtlas.actualizarElo(pepe);
+		}, gson ::toJson);
 		
 		
 		/*
-		//Obtener todos los usuarios
-		get("/getU", (req, res) -> {
+		 * 
+		//Usuario Especifico(recibe un id y te tira los datos del usuario)
+		post("/UsuarioEspecifico", (req, res) -> {
 			res.type("application/json");
-	        return BaseDeDatos.conexionMongoAtlas.getAllUsuarios();
+			String username = gson.fromJson(req.body(), String.class);
+	        return BaseDeDatos.conexionMongoAtlas.getUsuarioEspecifico(username);
 		}, gson ::toJson);
 		
-		/*
-		//obtener todos los games
-		get("/getG", (req, res) -> {
-			res.type("application/json");
-			BaseDeDatos.conexionMongoAtlas.getAllGames();
-			return "dea games";
-		}, gson ::toJson);
-
 		*/
-		//Usuario Especifico
-		post("/getUE", (req, res) -> {
-			res.type("application/json");
-			int idABuscar = gson.fromJson(req.body(), int.class);
-	        return BaseDeDatos.conexionMongoAtlas.getUsuarioEspecifico(idABuscar);
-		}, gson ::toJson);
 		
-		
-		//Game Especifico
-		post("/getGE", (req, res) -> {
+		//Game Especifico (recibe un id y te tira los datos del game)
+		post("/GameEspecifico", (req, res) -> {
 			res.type("application/json");
 			int idAABuscar = gson.fromJson(req.body(), int.class);
 	        return BaseDeDatos.conexionMongoAtlas.getGameEspecifico(idAABuscar);
 		}, gson ::toJson);
 		
-		//elpepe
+		//el pepe (devuelve el pepe)
 		get("/elpepe", (req, res) -> {
 			res.type("application/json");
 	        return "elpepe";
 		}, gson ::toJson);
 		
 	}
+
 }
