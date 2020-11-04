@@ -44,6 +44,9 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionUsuarios = RompePalabras.getCollection("usuarios");
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
+    public static void main(String[] args) {
+    	System.out.println(verUsuarioMasGrande());
+    } 
     
     public static boolean comprobarExistenciaDeUnUsuario(String nombre, String email) {
     	Bson filter = eq("username", nombre);
@@ -89,10 +92,10 @@ public class conexionMongoAtlas {
 		Bson filter2 = eq("elo", EloMasGrande);
 		Document Mejorusuario = collectionUsuarios.find(filter2).first();
 		String MejorusuarioString = Mejorusuario.toJson();
-        int a = MejorusuarioString.lastIndexOf("id") + 5;
+        int a = MejorusuarioString.lastIndexOf("username") + 12;
         String MejorusuarioNombre = "";
         for(int j = a+1;j < 200;j++){
-	        	if(MejorusuarioString.charAt(j) != ',') {
+	        	if(MejorusuarioString.charAt(j) != '"') {
 	        		MejorusuarioNombre = MejorusuarioNombre + MejorusuarioString.charAt(j);
 	        	}
 	        	else {
@@ -338,7 +341,7 @@ public class conexionMongoAtlas {
 	    return "game Agregado";
 	}
 	
-    public static int buscarIdPorDocument(String nombreABuscar){
+    public static int buscarIdPorNombre(String nombreABuscar){
         Document usuarioBuscado = collectionUsuarios.find(new Document("username", nombreABuscar)).first();
         System.out.println("Usuario: " + usuarioBuscado.toJson());
         String sCadena = usuarioBuscado.toJson();
@@ -356,6 +359,25 @@ public class conexionMongoAtlas {
         int idUsuarioINT = Integer.parseInt(idUsuario);
         System.out.println("a :  " + idUsuario );
         return idUsuarioINT;
+    }
+    
+    public static String buscarNombrePorId(int id){
+        Document usuarioBuscado = collectionUsuarios.find(new Document("id", id)).first();
+        System.out.println("Usuario: " + usuarioBuscado.toJson());
+        String sCadena = usuarioBuscado.toJson();
+        int a = sCadena.lastIndexOf("username") + 13;
+        String userName = "";
+        for(int i = a;i < 200;i++){
+	        	if(sCadena.charAt(i) != '"') {
+	        		userName = userName + sCadena.charAt(i);
+	        	}
+	        	else {
+		        	i = 300;
+	        	}
+        }
+        System.out.println(userName );
+        System.out.println("a :  " + userName );
+        return userName;
     }		
 
     public static ArrayList<Integer> buscarAmigosPorNombre(String username){
