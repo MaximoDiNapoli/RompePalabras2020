@@ -45,7 +45,8 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
     public static void main(String[] args) {
-    	System.out.println(verUsuarioMasGrande());
+		System.out.println(cerrarPartida(1));
+    	
     } 
     
     public static boolean comprobarExistenciaDeUnUsuario(String nombre, String email) {
@@ -201,7 +202,6 @@ public class conexionMongoAtlas {
 	        	}
         }
         int winner = Integer.parseInt(ganadorString);
-		System.out.println(winner);
     	return winner;
     	
     }
@@ -271,7 +271,7 @@ public class conexionMongoAtlas {
         //No puedo creer que esta pirateria funcione
 	}
 
-	public static String cerrarPartida(int partidaID){
+	public static int cerrarPartida(int partidaID){
 		Bson filterIdPartida = eq("game_id", partidaID);
 		int [] idsUsuarios = obtenerIdsUsuariosGame(partidaID);
 		Bson filterPuntajePlayer1 = eq("puntajePlayer1", 100);
@@ -279,11 +279,13 @@ public class conexionMongoAtlas {
 		if(collectionGames.find(Filters.and(filterPuntajePlayer1, filterIdPartida)) != null) {
 			int [] actualizarINT = new int[] {partidaID, idsUsuarios[0]};
 			setearGanador(actualizarINT);	//le pasa el id del ganador a setearGanador
+			return 1;
 		}else if(collectionGames.find(Filters.and(filterPuntajePlayer2, filterIdPartida)) != null) {
 			int [] actualizarINT = new int[] {partidaID, idsUsuarios[1]}; //basicamente es el id de la partida y el usuario que gano
 			setearGanador(actualizarINT);	//le pasa el id del ganador a setearGanador
+			return 2;
 		}
-		return "Done";
+		return 0;
 	}
 	
 	public static String setearGanador(int[] idPartida) {
@@ -323,7 +325,7 @@ public class conexionMongoAtlas {
 	    return "usuario Agregado";
 	}
 	
-	public static String insertarGame(games game1) {
+	public static int insertarGame(games game1) {
 	    int SetWinner = game1.getWinner();
 	    int SetId = game1.getGame_id();
 	    int SetPlayer1_id = game1.getPlayer1_id();
@@ -338,7 +340,7 @@ public class conexionMongoAtlas {
 	    gameJson.put("puntajePlayer1", SetPuntajePlayer1);
 	    gameJson.put("puntajePlayer2", SetPuntajePlayer2);
 	    collectionGames.insertOne(gameJson);
-	    return "game Agregado";
+	    return ultimoIDGames();
 	}
 	
     public static int buscarIdPorNombre(String nombreABuscar){
@@ -412,7 +414,6 @@ public class conexionMongoAtlas {
         	System.out.println("Arraylist contains: " + intAmigos.toString()); 
         	return intAmigos;
     }
-    
     
 	public static Document getGameEspecifico(int idAABuscar){
         Document gameBuscado = collectionGames.find(new Document("game_id", idAABuscar)).first();
