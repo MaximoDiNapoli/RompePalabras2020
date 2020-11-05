@@ -45,20 +45,7 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
     public static void main(String[] args) {
-        	int idUsuario = 1;
-            ArrayList<Integer> intIDPartidasIncluidos = new ArrayList<Integer>();
-    		Bson filter = eq("player1_id", idUsuario);        		
-    		Bson filter2 = eq("player2_id", idUsuario);
-        	for(int i = 1;i < collectionGames.count(); i++){
-        		System.out.println("a");
-        		Bson filterGame = eq("game_id", i);
-        		Bson filterQueNoEsteTerminada = eq("winner", 0);
-            	if(collectionGames.find(Filters.and(filter,filterGame,filterQueNoEsteTerminada)).first() != null || collectionGames.find(Filters.and(filter2,filterGame,filterQueNoEsteTerminada)).first() != null) {
-            		System.out.println(i);
-            		intIDPartidasIncluidos.add(i);
-            	}
-        	}
-        	System.out.println("Arraylist contains: " + intIDPartidasIncluidos.toString());
+    	System.out.println(cerrarPartida(59));
     } 
     
     public static ArrayList<Integer> partidasDeUnUsuarioSinTerminar(int idUsuario) {
@@ -307,11 +294,11 @@ public class conexionMongoAtlas {
 		int [] idsUsuarios = obtenerIdsUsuariosGame(partidaID);
 		Bson filterPuntajePlayer1 = eq("puntajePlayer1", 100);
 		Bson filterPuntajePlayer2 = eq("puntajePlayer2", 100);
-		if(collectionGames.find(Filters.and(filterPuntajePlayer1, filterIdPartida)) != null) {
+		if(collectionGames.find(Filters.and(filterPuntajePlayer1, filterIdPartida)).first() != null) {
 			int [] actualizarINT = new int[] {partidaID, idsUsuarios[0]};
 			setearGanador(actualizarINT);	//le pasa el id del ganador a setearGanador
 			return 1;
-		}else if(collectionGames.find(Filters.and(filterPuntajePlayer2, filterIdPartida)) != null) {
+		}else if(collectionGames.find(Filters.and(filterPuntajePlayer2, filterIdPartida)).first() != null) {
 			int [] actualizarINT = new int[] {partidaID, idsUsuarios[1]}; //basicamente es el id de la partida y el usuario que gano
 			setearGanador(actualizarINT);	//le pasa el id del ganador a setearGanador
 			return 2;
