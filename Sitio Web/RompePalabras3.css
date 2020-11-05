@@ -37,14 +37,14 @@ body{
     align-items: center;
     flex-direction: column;
     background-color: yellow; 
-    overflow: scroll;
-    overflow-y: scroll;
-    overflow-x: hidden;
     font-family: 'Press Start 2P', cursive; 
 }
 #section1 label{
     margin-top: 1%;
     text-align: center; 
+}
+#topMundo{
+    margin-top: 2%;
 }
 #login{
     color: rgb(255, 251, 0);
@@ -103,12 +103,6 @@ a:visited:hover{
         flex-direction: column;
         justify-content: center;
     }
-    #section1 th{
-        font-size: 4vw;
-    }
-    #section1 td{
-        font-size: 5vw;
-    }
     #section1 label{
         font-size: 6vw;
     }
@@ -131,12 +125,6 @@ a:visited:hover{
         flex-direction: column;
         justify-content: center;
     }
-    #section1 th{
-        font-size: 4vw;
-    }
-    #section1 td{
-        font-size: 5vw;
-    }
     #section1 label{
         font-size: 6vw;
     }
@@ -158,12 +146,6 @@ a:visited:hover{
         font-size: 3vw;
         flex-direction: column;
         justify-content: center;
-    }
-    #section1 th{
-        font-size: 4vw;
-    }
-    #section1 td{
-        font-size: 4vw;
     }
     #section1 label{
         font-size: 5vw;
@@ -191,12 +173,6 @@ a:visited:hover{
         margin-right: 3%;
         margin-left: 3%;
     }
-    #section1 th{
-        font-size: 3vw;
-    }
-    #section1 td{
-        font-size: 3vw;
-    }
     #section1 label{
         font-size: 3vw;
     }
@@ -222,12 +198,6 @@ a:visited:hover{
         margin-right: 18%;
         margin-left: 18%;
     }
-    #section1 th{
-        font-size: 2vw;
-    }
-    #section1 td{
-        font-size: 2vw;
-    }
     #section1 label{
         font-size: 2vw;
     }
@@ -252,12 +222,6 @@ a:visited:hover{
     #Leaderboard{
         margin-right: 19%;
         margin-left: 19%;
-    }
-    #section1 th{
-        font-size: 2vw;
-    }
-    #section1 td{
-        font-size: 2vw;
     }
     #section1 label{
         font-size: 2vw;
@@ -285,12 +249,6 @@ a:visited:hover{
         margin-right: 27%;
         margin-left: 27%;
     }
-    #section1 th{
-        font-size: 1.5vw;
-    }
-    #section1 td{
-        font-size: 1.5vw;
-    }
     #section1 label{
         font-size: 1.5vw;
     }
@@ -317,12 +275,6 @@ a:visited:hover{
         margin-right: 27%;
         margin-left: 27%;
     }
-    #section1 th{
-        font-size: 1.5vw;
-    }
-    #section1 td{
-        font-size: 1.5vw;
-    }
     #section1 label{
         font-size: 1.5vw;
     }
@@ -348,12 +300,6 @@ a:visited:hover{
     #Leaderboard{
         margin-right: 27%;
         margin-left: 27%;
-    }
-    #section1 th{
-        font-size: 1.5vw;
-    }
-    #section1 td{
-        font-size: 1.5vw;
     }
     #section1 label{
         font-size: 1.5vw;
