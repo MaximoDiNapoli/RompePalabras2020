@@ -21,6 +21,12 @@ public class api {
 			res.type("application/json");
 			return "Bienvenido ";
 		}, gson ::toJson);
+
+		post("/partidasDeUnUsuarioSinTerminar", (req, res) -> {
+			res.type("application/json");
+			int usuarioId = gson.fromJson(req.body(), int.class);
+			return BaseDeDatos.conexionMongoAtlas.partidasDeUnUsuarioSinTerminar(usuarioId);
+	}, gson ::toJson);
 		
 		post("/buscarNombrePorId", (req, res) -> {
 			res.type("application/json");

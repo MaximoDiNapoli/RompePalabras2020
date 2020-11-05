@@ -45,9 +45,40 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
     public static void main(String[] args) {
-		System.out.println(cerrarPartida(1));
-    	
+        	int idUsuario = 1;
+            ArrayList<Integer> intIDPartidasIncluidos = new ArrayList<Integer>();
+    		Bson filter = eq("player1_id", idUsuario);        		
+    		Bson filter2 = eq("player2_id", idUsuario);
+        	for(int i = 1;i < collectionGames.count(); i++){
+        		System.out.println("a");
+        		Bson filterGame = eq("game_id", i);
+        		Bson filterQueNoEsteTerminada = eq("winner", 0);
+            	if(collectionGames.find(Filters.and(filter,filterGame,filterQueNoEsteTerminada)).first() != null || collectionGames.find(Filters.and(filter2,filterGame,filterQueNoEsteTerminada)).first() != null) {
+            		System.out.println(i);
+            		intIDPartidasIncluidos.add(i);
+            	}
+        	}
+        	System.out.println("Arraylist contains: " + intIDPartidasIncluidos.toString());
     } 
+    
+    public static ArrayList<Integer> partidasDeUnUsuarioSinTerminar(int idUsuario) {
+        ArrayList<Integer> intIDPartidasIncluidos = new ArrayList<Integer>();
+		Bson filter = eq("player1_id", idUsuario);        		
+		Bson filter2 = eq("player2_id", idUsuario);
+    	for(int i = 1;i < collectionGames.count(); i++){
+    		System.out.println("a");
+    		Bson filterGame = eq("game_id", i);
+    		Bson filterQueNoEsteTerminada = eq("winner", 0);
+        	if(collectionGames.find(Filters.and(filter,filterGame,filterQueNoEsteTerminada)).first() != null || collectionGames.find(Filters.and(filter2,filterGame,filterQueNoEsteTerminada)).first() != null) {
+        		System.out.println(i);
+        		intIDPartidasIncluidos.add(i);
+        	}
+    	}
+    	System.out.println("Arraylist contains: " + intIDPartidasIncluidos.toString());
+    	return intIDPartidasIncluidos;
+    } 
+    
+    
     
     public static boolean comprobarExistenciaDeUnUsuario(String nombre, String email) {
     	Bson filter = eq("username", nombre);
@@ -105,8 +136,8 @@ public class conexionMongoAtlas {
 	        	}
         }
 		System.out.println(MejorusuarioNombre);
-		String mensaje = "El mejor usuario es: " + MejorusuarioNombre  + " con la increible cantidad de " + EloMasGrande + " de ELO!";
-    	return (mensaje);
+		String resultado  = ("el mejor usuario es: " + MejorusuarioNombre  + " con la increible cantidad de " + EloMasGrande + " de elo!");
+    	return resultado;
     }
         	
     public static int verPuntosDeUnUsuario(int[] Arrr) {
@@ -265,7 +296,7 @@ public class conexionMongoAtlas {
         }
         int idUsuario1INT = Integer.parseInt(idUsuario1);
         int idUsuario2INT = Integer.parseInt(idUsuario2);
-        System.out.println("a :  " + idUsuario1INT + "   b  :   " + idUsuario2INT);
+        System.out.println("usuario1 :  " + idUsuario1INT + "   usuario2  :   " + idUsuario2INT);
         int [] idsUsuarios = new int[] {idUsuario1INT,idUsuario2INT};
         return idsUsuarios;
         //No puedo creer que esta pirateria funcione
