@@ -150,8 +150,6 @@ class App():
 
 
         mylist = Listbox(self.pantallaPartidas, yscrollcommand = scrollbar.set )
-        for line in range(100):
-            mylist.insert(END, "This is line number " + str(line))
 
 
 
@@ -186,12 +184,20 @@ class App():
             print(nombreContrincante1 + "con1")
             nombreContrincante2 = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = str(idParticipantes[1]))).text
             print(nombreContrincante2 + "con2")
-            self.labeluS2 = Label(self.pantallaPartidas, text = (nombreContrincante1 +  " vs " + nombreContrincante2))
-            self.labeluS2.pack()
-
-            self.butonyPar = Button(self.pantallaPartidas, text= "Unirse a partida", width = 20, height = 1, command= (lambda idpartida=idpartida: (self.unirseAPartida(idpartida))))
-            self.butonyPar.pack()
+            mylist.insert(END, (nombreContrincante1 +  " vs " + nombreContrincante2 + " Id de la Partida: " + str(idpartida)))
+            
             pass
+        mylist.pack( fill = BOTH )
+        scrollbar.config( command = mylist.yview )
+        self.labeluAm = Label(self.pantallaPartidas, text = "Ingrese la id de la partida a la que quiere ingresar")
+        self.labeluAm.pack()
+        self.entradaPar = Entry(self.pantallaPartidas, bd =5)
+        self.entradaPar.pack()
+        self.butonyPar = Button(self.pantallaPartidas, text= "Unirse a partida", width = 20, height = 1, command= (lambda idpartida=idpartida: (self.unirseAPartida(self.entradaPar.get()))))
+        self.butonyPar.pack()
+        self.butonyAm2 = Button(self.pantallaPartidas, text= "Volver", width = 10,  command=self.volver2)
+        self.butonyAm2.pack()
+
 
         
 
@@ -281,6 +287,12 @@ class App():
             self.menu()
             self.pantallaPrincipal.pack()
             pass
+
+    def volver2(self):
+        self.pantallaPartidas.destroy()
+        self.menu()
+        self.pantallaPrincipal.pack()
+        pass
         
         
     def BuscarPartida(self, idJugador2):
