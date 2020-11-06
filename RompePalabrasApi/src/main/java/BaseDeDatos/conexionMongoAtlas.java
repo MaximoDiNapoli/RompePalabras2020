@@ -175,7 +175,7 @@ public class conexionMongoAtlas {
     	return 0;
     }
     
-    public static String agregarPuntosEnPartida(int[] idUsuarioIdgame) {
+    public static String agregarPuntosEnPartida(int[] idUsuarioIdgame) {	//
     	int idgame = idUsuarioIdgame[0];
     	int idUsuario = idUsuarioIdgame[1];
     	Bson filterG = eq("game_id", idgame);
@@ -188,7 +188,7 @@ public class conexionMongoAtlas {
     	return "puntos agregados";
     }
     
-    public static String quitarPuntosEnPartida(int[] idUsuarioIdgame) {
+    public static String quitarPuntosEnPartida(int[] idUsuarioIdgame) {     //
     	int idgame = idUsuarioIdgame[0];
     	int idUsuario = idUsuarioIdgame[1];
     	Bson filterG = eq("game_id", idgame);
