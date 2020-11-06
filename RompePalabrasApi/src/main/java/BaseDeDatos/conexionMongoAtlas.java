@@ -45,7 +45,7 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
     public static void main(String[] args) {
-    	System.out.println(partidasDeUnUsuarioSinTerminar(1).toString());
+    	System.out.println(partidasDeUnUsuarioSinTerminar(3).toString());
     } 
     
     public static ArrayList<Integer> partidasDeUnUsuarioSinTerminar(int idUsuario) {
@@ -53,11 +53,9 @@ public class conexionMongoAtlas {
 		Bson filter = eq("player1_id", idUsuario);        		
 		Bson filter2 = eq("player2_id", idUsuario);
     	for(int i = 1;i < collectionGames.count(); i++){
-    		System.out.println("a");
     		Bson filterGame = eq("game_id", i);
     		Bson filterQueNoEsteTerminada = eq("winner", 0);
         	if(collectionGames.find(Filters.and(filter,filterGame,filterQueNoEsteTerminada)).first() != null || collectionGames.find(Filters.and(filter2,filterGame,filterQueNoEsteTerminada)).first() != null) {
-        		System.out.println(i);
         		intIDPartidasIncluidos.add(i);
         	}
     	}
