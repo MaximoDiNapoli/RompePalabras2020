@@ -23,6 +23,9 @@ from getpass import getpass
 #if solicitud.status_code == 200:
 #    print(solicitud.text)
 
+ 
+ 
+
 
 
 class App():
@@ -66,6 +69,7 @@ class App():
 
 
     def menu(self):
+        self.Przyjaciele = (requests.post("http://127.0.0.1:4567/buscarIdPorDocument", headers = {'Content-type': 'application/json'}, data = (self.nombrus))).text
         self.pantallaPrincipal = Frame()
         self.labeluN2 = Label(self.pantallaPrincipal, text= self.nombreLogueado)
         self.labelu = Label(self.pantallaPrincipal, text="Informacion de Usuario:")
@@ -73,13 +77,31 @@ class App():
         self.labeluN2.grid(column=1, row=2)
         self.menuJuego = Menu(self.pantallaPrincipal)
         self.jugarAmigos = Menu(self.menuJuego)
-        for nombranie in self.Przyjaciele:
-            if nombranie.isdigit():
-                nombreAmigo = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = (nombranie))).text
-                self.jugarAmigos.add_command(label = nombreAmigo, command = (lambda: (self.BuscarPartida(int((requests.post("http://127.0.0.1:4567/buscarIdPorNombre", headers = {'Content-type': 'application/json'}, data = (nombreAmigo))).text)))))
+        self.sumarAmigos = Menu(self.menuJuego)
+        IDSAmigos = "0"
+        IDSint = []
+        for IDAmigo in self.Przyjaciele:
+            print(IDAmigo)
+            if str(IDAmigo).isdigit():
+                IDSAmigos = IDSAmigos + str(IDAmigo)
+                print(IDSAmigos)
                 pass
+            else:
+                IDSint.append(int(IDSAmigos))
+                print(IDSint)
+                IDSAmigos = ""
+                pass
+
+            pass
+        IDSint.remove(0)
+        self.Przyjaciele = IDSint
+        for nombranie in (self.Przyjaciele):
+            nombreAmigo = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = str(nombranie))).text
+            self.jugarAmigos.add_command(label = nombreAmigo, command = (lambda: (self.BuscarPartida(int((requests.post("http://127.0.0.1:4567/buscarIdPorNombre", headers = {'Content-type': 'application/json'}, data = (nombreAmigo))).text)))))
             pass
         self.menuJuego.add_cascade(label = "Jugar con", menu = self.jugarAmigos)
+        self.sumarAmigos.add_command(label = "Agregar Amigo", command = self.agregarAmigo)
+        self.menuJuego.add_cascade(label = "Agregar Amigos", menu = self.sumarAmigos)
         self.root.config(menu = self.menuJuego)
         self.butony3 = Button(self.pantallaPrincipal, text="Salir", width = 20, command=self.SalirDeLaApp)
         self.butony3.grid(column=0, row=1)
@@ -108,8 +130,10 @@ class App():
         idpartidas = (requests.post("http://127.0.0.1:4567/partidasDeUnUsuarioSinTerminar", headers = {'Content-type': 'application/json'}, data = str(self.idLogueado))).text
         for idpartida in idpartidas:
             if idpartida.isdigit():
-                idParticipantes = (requests.post("http://127.0.0.1:4567/obtenerIdsUsuariosGame", headers = {'Content-type': 'application/json'}, data = (idpartida))).text
+                idParticipantes = (requests.post("http://127.0.0.1:4567/obtenerIdsUsuariosGame", headers = {'Content-type': 'application/json'}, data = (idpartida)))
                 print(idParticipantes + "id")
+                print(idParticipantes[0] + "id")
+                print(idParticipantes[1] + "id")
                 nombreContrincante1 = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = (idParticipantes[0]))).text
                 print(nombreContrincante1 + "con1")
                 nombreContrincante2 = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = (idParticipantes[1]))).text
@@ -146,7 +170,7 @@ class App():
             print(solicitud.text)
             if solicitud.text == "true":
                 self.idLogueado = requests.post("http://127.0.0.1:4567/buscarIdPorNombre", headers = {'Content-type': 'application/json'}, data = (self.nombrus))
-                self.Przyjaciele = (requests.post("http://127.0.0.1:4567/buscarIdPorDocument", headers = {'Content-type': 'application/json'}, data = (self.nombrus))).text
+                
                 
                 self.idLogueado = int(self.idLogueado.text)
                 print(self.idLogueado)
@@ -162,7 +186,45 @@ class App():
                 
                 pass
         
+    def agregarAmigo(self):
+        self.pantallaPrincipal.destroy()
+        self.seccionAgregar()
+        self.pantallaAgregarAmigo.pack()
 
+
+    def seccionAgregar(self):
+        self.pantallaAgregarAmigo = Frame()
+        self.labeluAm = Label(self.pantallaAgregarAmigo, text = "Ingrese el nombre del amigo que desea agregar")
+        self.labeluAm.pack()
+        self.entradaAm = Entry(self.pantallaAgregarAmigo, bd =5)
+        self.entradaAm.pack()
+        self.butonyAm = Button(self.pantallaAgregarAmigo, text= "Agregar", width = 10,  command=self.agregarAmigo2)
+        self.butonyAm.pack()
+        self.butonyAm2 = Button(self.pantallaAgregarAmigo, text= "Volver", width = 10,  command=self.volver)
+        self.butonyAm2.pack()
+
+        pass
+        
+    def agregarAmigo2(self):
+        try:
+            print(self.entradaAm.get())
+            amigoAAgregar = (requests.post("http://127.0.0.1:4567/buscarIdPorNombre", headers = {'Content-type': 'application/json'}, data = (self.entradaAm.get()))).text
+            print(amigoAAgregar)
+            IDs = [amigoAAgregar, str(self.idLogueado)]
+            print(IDs)
+            result = (requests.post("http://127.0.0.1:4567/agregarAmigo", headers = {'Content-type': 'application/json'}, data = str(IDs) )).text
+            print(result)
+            pass
+        except:
+            messagebox.showerror("Error", "Error Fatal")
+            pass
+        
+    def volver(self):
+            self.pantallaAgregarAmigo.destroy()
+            self.menu()
+            self.pantallaPrincipal.pack()
+            pass
+        
         
     def BuscarPartida(self, idJugador2):
         self.jugador2 = idJugador2
