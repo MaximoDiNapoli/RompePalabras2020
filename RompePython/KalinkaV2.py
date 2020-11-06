@@ -124,27 +124,84 @@ class App():
         self.butony4.grid(column=3, row=2)
         
     def partidasSinTerminar(self):
-        self.pantallaPartidas = Frame()
+        self.pantallaPartidas = Frame(height = 200, width = 100)
         self.labeluS = Label(self.pantallaPartidas, text = "Partidas sin terminar")
         self.labeluS.pack()
+        scrollbar = Scrollbar(self.pantallaPartidas)
+        scrollbar.pack( side = RIGHT, fill = Y )
         idpartidas = (requests.post("http://127.0.0.1:4567/partidasDeUnUsuarioSinTerminar", headers = {'Content-type': 'application/json'}, data = str(self.idLogueado))).text
-        for idpartida in idpartidas:
-            if idpartida.isdigit():
-                idParticipantes = (requests.post("http://127.0.0.1:4567/obtenerIdsUsuariosGame", headers = {'Content-type': 'application/json'}, data = (idpartida)))
-                print(idParticipantes + "id")
-                print(idParticipantes[0] + "id")
-                print(idParticipantes[1] + "id")
-                nombreContrincante1 = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = (idParticipantes[0]))).text
-                print(nombreContrincante1 + "con1")
-                nombreContrincante2 = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = (idParticipantes[1]))).text
-                print(nombreContrincante2 + "con2")
-                self.labeluS2 = Label(self.pantallaPartidas, text = (nombreContrincante1 +  " vs " + nombreContrincante2))
-                self.labeluS2.pack()
+        IDSPartidas = "0"
+        IDSint = []
+        for IDPartida in idpartidas:
+            print(IDPartida)
+            if str(IDPartida).isdigit():
+                IDSPartidas = IDSPartidas + str(IDPartida)
+                print(IDSPartidas)
+                pass
+            else:
+                IDSint.append(int(IDSPartidas))
+                print(IDSint)
+                IDSPartidas = ""
                 pass
             pass
-        
+        IDSint.remove(0)
+        idpartidas = IDSint
+
+
+
+        mylist = Listbox(self.pantallaPartidas, yscrollcommand = scrollbar.set )
+        for line in range(100):
+            mylist.insert(END, "This is line number " + str(line))
+
+
+
+
+        for idpartida in idpartidas:
+            idParticipantes = (requests.post("http://127.0.0.1:4567/obtenerIdsUsuariosGame", headers = {'Content-type': 'application/json'}, data = str(idpartida))).text
+                
+                
+            IDSJugadores = "0"
+            IDSint2 = []
+            for IDJugador in idParticipantes:
+                print(IDJugador)
+                if str(IDJugador).isdigit():
+                    IDSJugadores = IDSJugadores + str(IDJugador)
+                    print(IDSJugadores)
+                    pass
+                else:
+                    IDSint2.append(int(IDSJugadores))
+                    print(IDSint2)
+                    IDSJugadores = ""
+                    pass
+
+                pass
+            IDSint2.remove(0)
+            idParticipantes = IDSint2
+                
+                
+            print(str(idParticipantes) + "id")
+            print(str(idParticipantes[0]) + "id")
+            print(str(idParticipantes[1]) + "id")
+            nombreContrincante1 = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = str(idParticipantes[0]))).text
+            print(nombreContrincante1 + "con1")
+            nombreContrincante2 = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = str(idParticipantes[1]))).text
+            print(nombreContrincante2 + "con2")
+            self.labeluS2 = Label(self.pantallaPartidas, text = (nombreContrincante1 +  " vs " + nombreContrincante2))
+            self.labeluS2.pack()
+
+            self.butonyPar = Button(self.pantallaPartidas, text= "Unirse a partida", width = 20, height = 1, command= (lambda idpartida=idpartida: (self.unirseAPartida(idpartida))))
+            self.butonyPar.pack()
+            pass
+
         
 
+
+
+    def unirseAPartida(self, idDeLaPartida):
+        self.idPartidaActual = idDeLaPartida
+        self.pantallaPartidas.destroy()
+        self.partida()
+        self.pantallaDeJuego.pack()
 
     def resultadoP(self):
         self.pantallaDeResultado = Frame()
@@ -281,6 +338,7 @@ class App():
 
     def irAPartidasSinTemrinar(self):
         self.pantallaPrincipal.destroy()
+        messagebox.showinfo("Puede tardar", "Pongase comodo! esto puede tomar unos segundos, apriete OK para comenzar")
         self.partidasSinTerminar()
         self.pantallaPartidas.pack()
         pass
