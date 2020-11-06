@@ -17,6 +17,15 @@ public class api {
 		
 		Gson gson = new Gson();
 		
+		
+		
+		post("/obtenerIdsUsuariosGame", (req, res) -> {
+			res.type("application/json");
+			String partidaID = gson.fromJson(req.body(), String.class);
+			int b = Integer.parseInt(partidaID);
+			return BaseDeDatos.conexionMongoAtlas.obtenerIdsUsuariosGame(b);
+		}, gson ::toJson);
+		
 		get("/", (req, res) -> {
 			res.type("application/json");
 			return "Bienvenido ";

@@ -45,7 +45,7 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
     public static void main(String[] args) {
-    	System.out.println(cerrarPartida(59));
+    	System.out.println(partidasDeUnUsuarioSinTerminar(1).toString());
     } 
     
     public static ArrayList<Integer> partidasDeUnUsuarioSinTerminar(int idUsuario) {
