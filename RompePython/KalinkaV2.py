@@ -70,6 +70,7 @@ class App():
 
     def menu(self):
         self.Przyjaciele = (requests.post("http://127.0.0.1:4567/buscarIdPorDocument", headers = {'Content-type': 'application/json'}, data = (self.nombrus))).text
+        print(self.Przyjaciele)
         self.pantallaPrincipal = Frame()
         self.labeluN2 = Label(self.pantallaPrincipal, text= self.nombreLogueado)
         self.labelu = Label(self.pantallaPrincipal, text="Informacion de Usuario:")
@@ -95,10 +96,7 @@ class App():
             pass
         IDSint.remove(0)
         self.Przyjaciele = IDSint
-        for nombranie in (self.Przyjaciele):
-            nombreAmigo = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = str(nombranie))).text
-            self.jugarAmigos.add_command(label = nombreAmigo, command = (lambda: (self.BuscarPartida(int((requests.post("http://127.0.0.1:4567/buscarIdPorNombre", headers = {'Content-type': 'application/json'}, data = (nombreAmigo))).text)))))
-            pass
+        self.jugarAmigos.add_command(label = "Jugar con Amigos", command = (lambda: (self.pantallaDeJugarAmigos())))
         self.menuJuego.add_cascade(label = "Jugar con", menu = self.jugarAmigos)
         self.sumarAmigos.add_command(label = "Agregar Amigo", command = self.agregarAmigo)
         self.menuJuego.add_cascade(label = "Agregar Amigos", menu = self.sumarAmigos)
@@ -199,7 +197,30 @@ class App():
         self.butonyAm2.pack()
 
 
-        
+
+    def jugarConAmigos(self):
+        self.pantallaJugarAmigos = Frame(height = 200, width = 100)
+        self.labeluJ = Label(self.pantallaJugarAmigos, text = "Amigos")
+        self.labeluJ.pack()
+        scrollbar2 = Scrollbar(self.pantallaJugarAmigos)
+        scrollbar2.pack( side = RIGHT, fill = Y )
+        mylist2 = Listbox(self.pantallaJugarAmigos, yscrollcommand = scrollbar2.set )
+        for amigo in self.Przyjaciele:
+            idAmigoJ = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = str(amigo))).text
+            print(type(idAmigoJ))
+            print(type(amigo))
+            mylist2.insert(END, (idAmigoJ + " Id: " + str(amigo)))
+            pass
+        mylist2.pack( fill = BOTH )
+        scrollbar2.config( command = mylist2.yview )
+        self.labeluJ4 = Label(self.pantallaJugarAmigos, text = "Ingrese la id del amigo con el que quiere jugar")
+        self.labeluJ4.pack()
+        self.entradaJ = Entry(self.pantallaJugarAmigos, bd =5)
+        self.entradaJ.pack()
+        self.butonyJ3 = Button(self.pantallaJugarAmigos, text= "Jugar con", width = 20, height = 1, command= (lambda idpartida=idAmigoJ: (self.BuscarPartida(self.entradaJ.get() ) ) ) )
+        self.butonyJ3.pack()
+        self.butonyJ2 = Button(self.pantallaJugarAmigos, text= "Volver", width = 10,  command=self.volver3)
+        self.butonyJ2.pack()
 
 
 
@@ -233,8 +254,6 @@ class App():
             print(solicitud.text)
             if solicitud.text == "true":
                 self.idLogueado = requests.post("http://127.0.0.1:4567/buscarIdPorNombre", headers = {'Content-type': 'application/json'}, data = (self.nombrus))
-                
-                
                 self.idLogueado = int(self.idLogueado.text)
                 print(self.idLogueado)
                 print(self.Przyjaciele)
@@ -254,6 +273,11 @@ class App():
         self.seccionAgregar()
         self.pantallaAgregarAmigo.pack()
 
+    def pantallaDeJugarAmigos(self):
+        self.pantallaPrincipal.destroy()
+        self.jugarConAmigos()
+        self.pantallaJugarAmigos.pack()
+
 
     def seccionAgregar(self):
         self.pantallaAgregarAmigo = Frame()
@@ -265,7 +289,6 @@ class App():
         self.butonyAm.pack()
         self.butonyAm2 = Button(self.pantallaAgregarAmigo, text= "Volver", width = 10,  command=self.volver)
         self.butonyAm2.pack()
-
         pass
         
     def agregarAmigo2(self):
@@ -293,11 +316,17 @@ class App():
         self.menu()
         self.pantallaPrincipal.pack()
         pass
+
+    def volver3(self):
+        self.pantallaJugarAmigos.destroy()
+        self.menu()
+        self.pantallaPrincipal.pack()
+        pass
         
         
     def BuscarPartida(self, idJugador2):
         self.jugador2 = idJugador2
-        self.pantallaPrincipal.destroy()
+        self.pantallaJugarAmigos.destroy()
         self.idPartidaActualSTR = (requests.post("http://127.0.0.1:4567/agregarGame", headers = {'Content-type': 'application/json'}, data = '{"player1_id": %s, "player2_id": %s }' % (self.idLogueado, idJugador2))).text
         self.idPartidaActual = int(self.idPartidaActualSTR) - 1
         self.partida()
