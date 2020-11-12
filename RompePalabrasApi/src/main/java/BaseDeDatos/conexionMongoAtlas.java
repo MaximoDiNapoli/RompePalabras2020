@@ -28,6 +28,22 @@ import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.json.JsonWriterSettings;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Projections.excludeId;
+import static com.mongodb.client.model.Projections.fields;
+import static com.mongodb.client.model.Projections.include;
+import com.mongodb.client.model.Updates;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.logging.Level;
+import org.bson.Document;
+
 
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.lt;
@@ -45,14 +61,15 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
     public static void main(String[] args) {
-    	System.out.println(partidasDeUnUsuarioSinTerminar(3).toString());
+        Document usuarioBuscado = collectionUsuarios.find(new Document("username", "valkyrion2")).first();
+        System.out.println("Usuario: " + usuarioBuscado.toJson());
     } 
     
     public static ArrayList<Integer> partidasDeUnUsuarioSinTerminar(int idUsuario) {
         ArrayList<Integer> intIDPartidasIncluidos = new ArrayList<Integer>();
 		Bson filter = eq("player1_id", idUsuario);        		
 		Bson filter2 = eq("player2_id", idUsuario);
-    	for(int i = 1;i < collectionGames.count(); i++){
+    	for(int i = 1;i <= collectionGames.count()+1; i++){
     		Bson filterGame = eq("game_id", i);
     		Bson filterQueNoEsteTerminada = eq("winner", 0);
         	if(collectionGames.find(Filters.and(filter,filterGame,filterQueNoEsteTerminada)).first() != null || collectionGames.find(Filters.and(filter2,filterGame,filterQueNoEsteTerminada)).first() != null) {
@@ -62,8 +79,6 @@ public class conexionMongoAtlas {
     	System.out.println("Arraylist contains: " + intIDPartidasIncluidos.toString());
     	return intIDPartidasIncluidos;
     } 
-    
-    
     
     public static boolean comprobarExistenciaDeUnUsuario(String nombre, String email) {
     	Bson filter = eq("username", nombre);
@@ -139,6 +154,7 @@ public class conexionMongoAtlas {
             String ganadorString = "";
             for(int i = a;i < 200;i++){
     	        	if(GameString.charAt(i) != ',') {
+    	        		
     	        		ganadorString = ganadorString + GameString.charAt(i);
     	        	}
     	        	else {

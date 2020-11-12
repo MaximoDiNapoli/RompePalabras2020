@@ -17,6 +17,13 @@ public class api {
 		
 		Gson gson = new Gson();
 		
+		post("/agregarAmigo", (req, res) -> {
+			res.type("application/json");
+			String[] usuarios = gson.fromJson(req.body(), String[].class);
+			int b = Integer.parseInt(usuarios[0]);
+			int c = Integer.parseInt(usuarios[1]);
+			return BaseDeDatos.conexionMongoAtlas.agregarFriend(b, c);
+		}, gson ::toJson);
 		
 		
 		post("/obtenerIdsUsuariosGame", (req, res) -> {
