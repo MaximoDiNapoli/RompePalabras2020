@@ -234,7 +234,9 @@ class App():
         self.pantallaDeResultado = Frame()
         self.butonia = Button(self.pantallaDeResultado, text= "Volver a jugar", width = 20, bg = "green", command=self.VolverAJugar)
         self.butonia2 = Button(self.pantallaDeResultado, text= "Volver al menu", width = 20, bg = "red", command=self.VolverAlMenu)
-        self.labelu = Label(self.pantallaDeResultado, text = "Puntuacion: " )
+        self.idGanador = (requests.post("http://127.0.0.1:4567/verGanador", headers = {'Content-type': 'application/json'}, data = self.idPartidaActual).text)
+        self.nombreGanador = requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = self.idGanador).text
+        self.labelu = Label(self.pantallaDeResultado, text = "Ganador: " + self.nombreGanador )
         self.labelu.grid(column=1, row=1)
         self.butonia.grid(column = 0, row = 2)
         self.butonia2.grid(column = 2, row = 2)
