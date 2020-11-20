@@ -38,7 +38,7 @@ class App():
         self.setPreguntas = [0, 1, 2, 3, 4]
         self.pregunta = ["Co kolorowy jest czerwony?", "Carlos Martel evito que los bereberes entraran en...?", "La cacion One Way Or Another pertenece a...?", "Cuantos protones tiene el litio?", "Que libreria conecta sencillamente Python y MongoDb sin utilizar una API?"]
         self.setRespuestas = ["To nie", "To tez nie", "To mniej", "To tak"], ["Francia", "Alemania", "Brazil", "Marruecos"], ["Blondie", "Depeche Mode", "Ensiferum", "Bjork"], ["10", "21", "13", "3"], ["PyMongo", "MongoPy", "PyMo", "MongoConnect"]
-
+        self.terminado = "0"
         self.correcta = [4, 1, 1, 4, 1]      
         self.login()
 
@@ -108,18 +108,24 @@ class App():
 
 
     def partida(self):
-        self.numeroR = random.choice(self.setPreguntas)
-        self.pantallaDeJuego = Frame()
-        self.labelu = Label(self.pantallaDeJuego, text = self.pregunta[self.numeroR])
-        self.labelu.grid(column=2, row=0)
-        self.butony1 = Button(self.pantallaDeJuego, text= self.setRespuestas[self.numeroR][0], width = 20, height = 2, bg = "blue", command= (lambda: (self.resolverRespuesta(1))))
-        self.butony2 = Button(self.pantallaDeJuego, text= self.setRespuestas[self.numeroR][1], width = 20, height = 2, bg = "green", command= (lambda: (self.resolverRespuesta(2))))
-        self.butony3 = Button(self.pantallaDeJuego, text= self.setRespuestas[self.numeroR][2], width = 20, height = 2, bg = "yellow", command= (lambda: (self.resolverRespuesta(3))))
-        self.butony4 = Button(self.pantallaDeJuego, text= self.setRespuestas[self.numeroR][3], width = 20, height = 2, bg = "red", command= (lambda: (self.resolverRespuesta(4))))
-        self.butony1.grid(column=1, row=1)
-        self.butony2.grid(column=1, row=2)
-        self.butony3.grid(column=3, row=1)
-        self.butony4.grid(column=3, row=2)
+        if self.terminado == "0":
+            self.numeroR = random.choice(self.setPreguntas)
+            self.pantallaDeJuego = Frame()
+            self.labelu = Label(self.pantallaDeJuego, text = self.pregunta[self.numeroR])
+            self.labelu.grid(column=2, row=0)
+            self.butony1 = Button(self.pantallaDeJuego, text= self.setRespuestas[self.numeroR][0], width = 20, height = 2, bg = "blue", command= (lambda: (self.resolverRespuesta(1))))
+            self.butony2 = Button(self.pantallaDeJuego, text= self.setRespuestas[self.numeroR][1], width = 20, height = 2, bg = "green", command= (lambda: (self.resolverRespuesta(2))))
+            self.butony3 = Button(self.pantallaDeJuego, text= self.setRespuestas[self.numeroR][2], width = 20, height = 2, bg = "yellow", command= (lambda: (self.resolverRespuesta(3))))
+            self.butony4 = Button(self.pantallaDeJuego, text= self.setRespuestas[self.numeroR][3], width = 20, height = 2, bg = "red", command= (lambda: (self.resolverRespuesta(4))))
+            self.butony1.grid(column=1, row=1)
+            self.butony2.grid(column=1, row=2)
+            self.butony3.grid(column=3, row=1)
+            self.butony4.grid(column=3, row=2)
+        else:
+            self.resultadoP()
+            self.pantallaDeResultado.pack()
+            pass
+
         
     def partidasSinTerminar(self):
         self.pantallaPartidas = Frame(height = 200, width = 100)
@@ -226,6 +232,7 @@ class App():
 
     def unirseAPartida(self, idDeLaPartida):
         self.idPartidaActual = idDeLaPartida
+        self.terminado = (requests.post("http://127.0.0.1:4567/cerrarPartida", headers = {'Content-type': 'application/json'}, data = str(self.idPartidaActual))).text
         self.pantallaPartidas.destroy()
         self.partida()
         self.pantallaDeJuego.pack()
@@ -234,7 +241,9 @@ class App():
         self.pantallaDeResultado = Frame()
         self.butonia = Button(self.pantallaDeResultado, text= "Volver a jugar", width = 20, bg = "green", command=self.VolverAJugar)
         self.butonia2 = Button(self.pantallaDeResultado, text= "Volver al menu", width = 20, bg = "red", command=self.VolverAlMenu)
-        self.labelu = Label(self.pantallaDeResultado, text = "Puntuacion: " )
+        self.idGanador = (requests.post("http://127.0.0.1:4567/verGanador", headers = {'Content-type': 'application/json'}, data = str(self.idPartidaActual)).text)
+        self.nombreGanador = (requests.post("http://127.0.0.1:4567/buscarNombrePorId", headers = {'Content-type': 'application/json'}, data = self.idGanador)).text
+        self.labelu = Label(self.pantallaDeResultado, text = "Ganador: " + self.nombreGanador )
         self.labelu.grid(column=1, row=1)
         self.butonia.grid(column = 0, row = 2)
         self.butonia2.grid(column = 2, row = 2)
@@ -337,28 +346,29 @@ class App():
 
     def resolverRespuesta(self, seleccion):
         print(self.idPartidaActual)
-        self.terminado = (requests.post("http://127.0.0.1:4567/cerrarPartida", headers = {'Content-type': 'application/json'}, data = str(self.idPartidaActual))).text
         print(type(self.terminado))
         arrayPartida = [str(self.idPartidaActual), str(self.idLogueado)]
-        if self.terminado == "0":
-            if seleccion == self.correcta[self.numeroR]:
-                requests.post("http://127.0.0.1:4567/SumarPuntos", headers = {'Content-type': 'application/json'}, data = str(arrayPartida))
-                self.pantallaDeJuego.destroy()
-                self.partida()
-                self.pantallaDeJuego.pack()
-                pass
-            else:
-                requests.post("http://127.0.0.1:4567/quitarPuntos", headers = {'Content-type': 'application/json'}, data = str(arrayPartida))
-                self.pantallaDeJuego.destroy()
-                self.partida()
+        
+        if seleccion == self.correcta[self.numeroR]:
+            requests.post("http://127.0.0.1:4567/SumarPuntos", headers = {'Content-type': 'application/json'}, data = str(arrayPartida))
+            self.terminado = (requests.post("http://127.0.0.1:4567/cerrarPartida", headers = {'Content-type': 'application/json'}, data = str(self.idPartidaActual))).text
+            self.pantallaDeJuego.destroy()
+            self.partida()
+            if self.terminado == "0":
                 self.pantallaDeJuego.pack()
                 pass
             pass
         else:
+            requests.post("http://127.0.0.1:4567/quitarPuntos", headers = {'Content-type': 'application/json'}, data = str(arrayPartida))
             self.pantallaDeJuego.destroy()
-            self.resultadoP()
-            self.pantallaDeResultado.pack()
+            self.partida()
+            if self.terminado == "0":
+                self.pantallaDeJuego.pack()
+                pass
             pass
+            
+        pass
+
 
 
 
