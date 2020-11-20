@@ -23,7 +23,7 @@ import static com.mongodb.client.model.Updates.*;
 
 
 
-public class conexionMongoAtlas {
+public class ConexionMongoAtlas {
 	
 	//Basicamente en esta parte conecto la base de datos con la api 
 	//guardo la base de datos como RompePalabras
@@ -37,9 +37,6 @@ public class conexionMongoAtlas {
     static MongoCollection<Document> collectionUsuarios = RompePalabras.getCollection("usuarios");
     static MongoCollection<Document> collectionGames = RompePalabras.getCollection("games");
 
-    
-    
-    
     public static void main(String[] args) {
         //no le presten mucha atencion al main es solo para hacer pruebas despues nunca se lo llama realmente en api.java
     	ArrayList<Integer> intIDPartidasIncluidos = new ArrayList<Integer>();

@@ -28,7 +28,7 @@ public class Usuario {
 	}
 	
 	private int ultimoIDUsuario() {
-		return api.conexionMongoAtlas.ultimoIDUsuario();
+		return Api.conexionMongoAtlas.ultimoIDUsuario();
 	}
 
 	public Usuario(int id, String username, Vector<Integer> friends, String email, int elo) {

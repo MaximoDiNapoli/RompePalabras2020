@@ -23,7 +23,7 @@ public class Game {
 	
 	
 	private int ultimoIDGames() {
-		return api.conexionMongoAtlas.ultimoIDGames();
+		return Api.conexionMongoAtlas.ultimoIDGames();
 	}
 
 
