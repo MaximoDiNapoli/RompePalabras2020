@@ -350,10 +350,12 @@ class App():
         arrayPartida = [str(self.idPartidaActual), str(self.idLogueado)]
         
         if seleccion == self.correcta[self.numeroR]:
-            requests.post("http://127.0.0.1:4567/SumarPuntos", headers = {'Content-type': 'application/json'}, data = str(arrayPartida))
             self.terminado = (requests.post("http://127.0.0.1:4567/cerrarPartida", headers = {'Content-type': 'application/json'}, data = str(self.idPartidaActual))).text
             self.pantallaDeJuego.destroy()
             self.partida()
+            if self.terminado == "0":
+                requests.post("http://127.0.0.1:4567/SumarPuntos", headers = {'Content-type': 'application/json'}, data = str(arrayPartida))
+                pass
             if self.terminado == "0":
                 self.pantallaDeJuego.pack()
                 pass
